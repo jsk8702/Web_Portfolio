@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>Mouse Animation - Move</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css?family=Abel&display=swap');
+        body {
+            width: 100%;
+            height: 100vh;
+            background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%);
+            overflow: hidden;
+            font-family: 'Abel', sans-serif;
+/*            cursor: none;*/
+        } 
+        .move-image {
+            width: 400px;
+            height: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) perspective(600px) rotateX(0deg)rotateY(20deg);
+            transform-style: preserve-3d;
+        }
+        .mimg {
+            width: 400px;
+            height: 600px;
+            position: relative;
+            transform: translateZ(80px) scale(0.8);
+            
+        }
+        .mimg::before, .mimg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url(img/img.png);
+            background-size: cover;
+            border-radius: 10px;
+            
+        }
+        .mimg::after {
+            height: 30px;
+            top: auto;
+            bottom: -15px;
+            background-size: 100% 30px;
+            filter: blur(15px);
+            z-index: -1;
+                
+        }
+        .mtext {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 2;
+            width: 400px;
+            height: 600px;
+            border: 3ps solid #fff;
+            transform: translateZ(150px) translateX(-18px) translateY(-20px) scale(0.5);
+            background: linear-gradient(135deg, 
+                rgba(255,255,255,1) 0%, 
+                rgba(255,255,255,0.36) 35%, 
+                rgba(255,255,255,0.07) 41%, 
+                rgba(255,255,255,0) 51%, 
+                rgba(255,255,255,0) 100%
+            );
+            text-align: center;
+            font-size: 48px;
+            color: #fff;
+            text-transform: uppercase;
+            line-height: 1050px;
+            font-weight: bold;
+            border-radius: 5px;
+        }
+        .mtext::after {
+            content: 'publisher';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            font-size: 20px;
+            line-height: 75px;
+            width: 100%;
+            font-weight: normal;
+            letter-spacing: 15px;
+            text-indent: 12px;
+        }
+        .cursor {
+            position: absolute;
+            border: 2px solid #fff;
+            background: rgba(255,255,255,0.4);
+            height: 40px;
+            width: 40px;
+            margin-left: -20px;
+            margin-top: -20px;
+            border-radius: 100%;
+            z-index: 10000;
+            user-select: none;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="cursor"></div>
+    <div class="move-image">
+        <div class="mimg"></div>
+        <div class="mtext">Green knight</div>
+    </div>
+</body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
+<script>
+    var $wrap = $(".move-image"),
+        fmouseX = 0,
+        fmouseY = 0,
+        cursor = $(".cursor"),
+        mouseX = 0,
+        mouseY = 0,
+        angleX = 0,
+        angleY = 0,
+        friction = 1/6;
+        
+    
+    $(document).mousemove(function(e){
+        mouseX = Math.max(-100, Math.min(100, $(window).width()/2 - e.pageX));
+        mouseY = Math.max(-100, Math.min(100, $(window).height()/2 - e.pageY));
+        
+        angleX = (12 * mouseX) / 100; //회전 각도를 설정해 주는 것이다. 그래야 360도 돌아가지 않는다.
+        angleY = (12 * mouseY) / 100;
+//      console.log('mouseX = '+ mouseX); // 마우스 x와 y 값 좌표를 검사의 콘솔에서 확인 하기 위해 사용해봄
+//      console.log('mouseY = '+ mouseY);
+        
+//      console.log('angleX = '+ angleX); // 마우스 x와 y 값 좌표를 검사의 콘솔에서 확인 하기 위해 사용해봄
+//      console.log('angleY = '+ angleY);
+        
+        mouseX = e.pageX;
+        mouseY = e.pageY;
+    });
+    
+    function animatate(){
+        fmouseX += (angleX - fmouseX) * friction;
+        fmouseY += (angleY - fmouseY) * friction;
+        
+        $wrap.css({'transform':'translate(-50%, -50%) perspective(600px) rotateX('+ fmouseY +'deg)rotateY('+ -fmouseX +'deg)'});
+        
+        window.requestAnimationFrame(animatate);
+        
+//        console.log('fmouseX = '+ fmouseX);
+//        console.log('fmouseY = '+ fmouseY);
+    };
+    
+    TweenMax.to({}, 0.016, {
+        repeat: -1,
+        onRepeat: function(){
+            TweenMax.set(cursor, {
+                css: {
+                    left: mouseX,
+                    top: mouseY
+                }
+            });
+        }
+    });
+    
+    animatate();
+</script>
+</html>
+
+
+
+
+
+
+
+
+
+

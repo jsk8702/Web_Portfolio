@@ -17,6 +17,7 @@
         #nav ul {float: right; padding-right: 10px; }
         #nav ul li {display: inline; }
         #nav ul li a {display: inline-block; padding: 20px 15px; color: #fff; font-weight: bold; font-family: 'Abel'; text-transform: capitalize;}
+        #nav ul li.active a {color: #000;}
         
         /* contents */
         #contents {text-align: center; color: #fff;}
@@ -37,7 +38,7 @@
     <nav id="nav">
         <h1>WEB'S</h1>
         <ul>
-            <li><a href="#section1">menu1</a></li>
+            <li class="active"><a href="#section1">menu1</a></li>
             <li><a href="#section2">menu2</a></li>
             <li><a href="#section3">menu3</a></li>
             <li><a href="#section4">menu4</a></li>
@@ -65,16 +66,43 @@
         nav.click(function(e){
             e.preventDefault(); //#의 기본기능 차단으로 #이 링크되어 있어서 해당 버튼 누르면 맨 화면 상단으로 강제이동되는 현상 방지.
             var target = $(this); //클릭한 타겟을 변수에 할당
-            var index = target.index(); //클릭한 타겟에 번호를 할당
+            var index = target.index(); //클릭한 타겟의 변수에 번호를 할당
             //alert(index);
             var section = cont.eq(index); //클릭한 버튼에 숫자를 할당해서 컨탠츠와 연결
-            var offset = section.offset().top; //각 컨탠츠의 오프셋 값을 할당
+            var offset = section.offset().top; //각 컨탠츠의 오프셋 값을 할당해서 top 값을 구한다.
             //alert(offset); //여기서 버튼 눌렀을때 뜨는 숫자는 top: 0에서부터 각 섹션의 하이트 값이다.
             $("html, body").animate({scrollTop: offset},600, "easeInOutExpo"); // html과 body의 스크롤바에 오프셋 값을 주고 0.6초간 이동하라는 애니메이션 효과를 준다.
-            
-            
-            
         });
+        
+        //오프셋 값과 스크롤 값이 같으면 화면에 보이게 된다.
+        $(window).scroll(function(){ 
+            var wScroll = $(this).scrollTop(); // 현재 스크롤의 top 수치값을 구한다.
+            
+            if(wScroll >= cont.eq(0).offset().top){
+                nav.removeClass("active");
+                nav.eq(0).addClass("active");
+            }
+            if(wScroll >= cont.eq(1).offset().top){
+                nav.removeClass("active");
+                nav.eq(1).addClass("active");
+            }
+            if(wScroll >= cont.eq(2).offset().top){
+                nav.removeClass("active");
+                nav.eq(2).addClass("active");
+            }
+            if(wScroll >= cont.eq(3).offset().top){
+                nav.removeClass("active");
+                nav.eq(3).addClass("active");
+            }
+            if(wScroll >= cont.eq(4).offset().top){
+                nav.removeClass("active");
+                nav.eq(4).addClass("active");
+            }
+            if(wScroll >= cont.eq(5).offset().top){
+                nav.removeClass("active");
+                nav.eq(5).addClass("active");
+            }
+        })
     </script>
 </body>
 </html>
