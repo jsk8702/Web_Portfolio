@@ -1,0 +1,148 @@
+<1. Intro>
+1. 주 내용은 마우스 좌표값 과 연결된 효과이다. 그리고 앞으로
+제이쿼리 사용은 줄고 았으며, 자바 스크립트 사용이 늘어나고 있다.
+
+
+
+<2. Mouse Animation-basic>
+1. 마우스 좌표를 구할수 있어야 한다.
+
+2. 기본 개념은 먼저 원을 만들고 포지션을 엡술루트로 준 다음, 그 기준점인
+릴레이티브를 마우스 좌표값으로 주면 된다.
+
+3. 각 좌표값은 다음과 같다.
+clientX(스크롤 이동을 제외한 마우스 X좌표값)
+clientY(스크롤 이동을 제외한 마우스 Y좌표값)
+offsetX(이벤트 발생시 객체의 X좌표값)
+offsetY(이벤트 발생시 객체의 Y좌표값)
+pageX(스크롤 이동을 포함한 마우스 X좌표값)
+pageY(스크롤 이동을 포함한 마우스 Y좌표값)
+screenX(모니터 기준으로 X좌표)
+screenY(모니터 기준으로 Y좌표)
+
+4. 
+
+$("body, html").mousemove(function(e){
+            $("#clientX").text(e.clientX);
+        });
+-> 이건 바디와 html에 마우스를 올렸을 때, 좌표값을 e에 넣고, 그 중에서 #clientX의 
+좌표값만 텍스트로 가져온다는 의미다. 나머지도 마찬가지다.
+그리고 여기서 mouseover로 하면 렉 걸려서 마우스 동작이 끊기니까 반드시
+mousemove 로 설정 해 줄것.
+
+$("#clientY").text(e.clientY); 이것도 같은 방식으로 해석하면 된다.
+
+$(".cursor").css("left", e.pageX15).css("top", e.pageY-15); -> 이건 이제 기존에 마우스 커서 클래스의
+포지션 위치에서 왼쪽과 위쪽을 e.pageX와 e.pageY에 넣어서 마우스 움직임에 따라
+커서가 이동하게 된다. (보통 pageX와 Y를 많이 쓴다. -15는 원 도형 안에 마우스 커서가 
+들어가게 하기 위함이다. 
+
+5. body 스타일에 cursor: none; 이라고 하면 브라우저 화면에 원형만 나오고 커서는 안나오기 때문에
+보기 좋다. 내 생각인데, 커서가 원형 안에 나오는지 확인 후에 이 태그를 사용해야 
+이 애니메이션으로 어딘가를 클릭 할 때 제대로 커서가 위치에 적용되는지 알 수 있을꺼 같다.
+
+
+<3. Mouse Animation - GSAP>
+1.  Viewport Height (vh) : viewport의 높이에 근거한다. 1vh는 viewport의 높이의 1%와 같다.
+Viewport Width (vw) : viewport의 폭에 근거한다. 1vw는 viewport의 넓이의 1%와 같다.
+Viewport가 다양한 상황에서 어떤 값을 가지고 있는지 설명하겠다.
+viewport의 폭이 1200px, 높이가 1000px의 경우 10vw는 120px, 10vh는 100px이된다. 
+이 viewport는 폭이 높이보다 더 크기 때문에 10vmax는 120px, 10vmin는 100px이된다
+
+이 장치의 방향이 바뀌어 viewport의 폭이 1000px 높이가 1200px되면 
+10vh는 120px, 10vw는 100px이된다. 흥미롭게도, 10vmax는 큰 쪽의 viewport의 값에 따라 결정되므로 
+120px 상태이다. 마찬가지로 10vmin도 100px로 그대로이다.
+
+브라우저 창의 크기를 변경하여 viewport의 넓이를 1000px 높이를 800px하면 
+10vh는 80px, 10vw는 100px이된다. 마찬가지로 10vmax는 100px, 10vmin은 80px된다
+ 
+2. user-select:none => 속성은 해당요소의 드레그, 더블클릭, 블럭지정을 막는다
+pointer-events: none 속성은 HTML 요소에 정의된 클릭, 상태(hover,active등), 
+커서 옵션들이 비활성화한다.
+
+3. 스크립트는 제이쿼리 먼저 연동하고, 그 다음에 GSAP 라이브러리 연동해주면 된다.
+
+4. repeat: -1,  -> 이부분 오타나면 커서가 안움직이니까 반드시 확인 할 것.
+
+
+
+<4. Mouse Animation - blend>
+1. mix-blend-mode: difference; 이건 css 효과로 .cursor에 주면 된다. 이걸 주면, 커서가
+객체에 닿았을때, 커서와 객체의 색이 반전되어서 보인다. 실제 이미지에 효과를 주면,
+다양한 색상이 반전되어 보인다.
+
+ 
+<5. Mouse Animation - Move>
+1. top: auto -> top 위치를 초기화 시킨다.
+
+2.  transform: translateZ(); 를 이용해서 객체가 축소된 것 같이 보여줄 수 있다. 
+
+3. body의 CSS 설정에서 height: 100vh 를 10vh로 잘 못 쓰면, background-image 의
+linear-gradient 의 그라디언트 무늬가 전체 적으로 나오지 않고 짧은 체크 무니처럼 나오게 된다.
+height: 100vh 로 줬는지 반드시 확인 해라.
+
+4. 텍스트가 기존 높이 보다 엄청 높이 있다면 line-height 값을 잘못 줬을 수 있다. 또한 px 단위로
+안주면 이런 현상이 발생하니 확인해 봐야 한다.
+
+5. 제이쿼리에서 변수 선언시 ' var $변수 = 0; '  이나  ' var 변수 = 0; ' 이나 같은 의미다.
+
+6.
+$(window).mousemove(function(e){
+	mouseX = e.pageX;
+	mouseY = e.pageY;
+});
+
+=> 여기서 $(window) 대신에 $(document) 써도 된다.
+=> 해석하면 화면에 마우스가 움직이면, event에 그 값을 넣고,
+그 값 중에서 X좌표값은 mouseX 변수에 넣고,  Y좌표값은 mouseY 변수에 넣는다.
+
+7. 함수를 실행하기 위해서는 함수 이름을 정해서 선언하고, 실행문을 작성해야 한다.
+함수 선언문은 function 함수이름(){ }; 이렇게 작성한다.
+함수 실행문은 함수이름(); 이렇게 작성한다.
+
+8. 숫자 값에 갑자기 변수를 넣을 때는 특수 표시로 '+변수+'  이렇게 해줘야 한다.
+예) rotateX(180deg); -> rotateX('+mouseX+'+deg);
+
+9. window.requsetAnimationFrame(함수이름); => 이걸 함수 선언 마지막에 넣어서 
+반환시켜줘야 애니메이션이 작동 한다.
+
+10. Math.max(x, y) => 메스함수로 x와 y 중에 가장 큰수를 선택한다.(여기서는 X축,Y 축
+으로 쓰인것이 아니다.) 주로 애니메이션의 최대각도 나 한계치 설정 할 때 쓰인다.
+예) mouseX = Math.max(-100, Math.min(100, $(window).width()/2 - e.pageX));
+=> 마우스에 의한 이동 범위가 X축 기준으로 최대 -100px 에서 최소 100px 사이에서만
+인식하고 움직인다.
+
+11. friction 효과를 넣으면 움직임을 부드럽게 해줄 수 있다. 계속 값이 더해지면서 
+움직임이 살짝 느려지는 효과가 부드러워 보이는 비결이다.
+예) var $wrap = $(".move-image"),
+        mouseX = 0,
+        mouseY = 0,
+        friction = 1/6;
+=> 움직임이 1/6 만큼 살짝 느려지고 부드러워 보인다.
+
+
+
+<6. Mouse Animation - Text>
+1. 지금까지는 제이쿼리를 이용했다. 이번에는 자바 스크립트만 사용해본다. 자바 스크립트는
+제이쿼리와 조금 다르다.
+
+2. CSS 에서 text-shadow 와 box-shadow 는 비슷한 기능이다. 이번에는 자바 스크립트로 
+text-shadow 의 X값, Y값 위치에 마우스의 X값, Y값을 넣어서 적용 시켜 본다.
+마우스가 움직임에 따라 text-shadow 의 색상이 변하는 기능이다. 물론 마우스 움직임
+범위에 제한을 둬서 색상 변화에 제한을 둬야 한다. 
+
+3. 순수 자바 스크립트 이므로, 제이쿼리 연동 안시켜도 된다. 자바 스크립트 시작은
+(d => {
+	})(document); 
+이렇게 시작한다.  변수 선언 시에도 var 대신에 const 나 let 을 사용한다.( 주로 const 사용)
+
+4. 제이쿼리 에서는 선택자가 $("선택 대상") 이렇게 표현 하지만, 자바 스크립트에서는
+d.querySelector("선택할 대상"); 이렇게 표시 한다.
+예) var word = $(".word");  =>  const word = d.querySelector(".word");
+
+5. 선택할 대상.getBoundingClientRect();  => 해당 메서드는 선택 대상의 요소를 
+viewport 에서 상대적인 위치로 반환한다. 즉, viewport의 시작지점을 기준으로 한 상대좌표 값을
+가져오는 것이다.
+
+6. 자바 스크립트에서 함수 실행문은 window.addEventListener("효과", 속성); 이다.
+제이쿼리와 비교하면  $(window).효과(function(){속성}); 과 같다. 
