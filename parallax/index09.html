@@ -7,7 +7,7 @@
     <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i'" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet">
     <style>
-         /* reset */
+        /* reset */
         * {margin:0; padding:0; font-family: 'Lato';}
         li {list-style: none;}
         a {text-decoration: none;}
@@ -18,29 +18,41 @@
         #nav h1 {float: left; color: #fff; font-size: 40px; padding: 5px 5px 5px 15px; font-family: 'Abel' }
         
         /* dot */
-        #dot {position: fixed; right: 20px; top: 50%; transform: translateY(-50%);}
-        #dot li a {
-            color: #fff; 
+        #dot {position: fixed; right: 0; top: 50%; transform: translateY(-50%);}
+        #dot li {
+            position: relative;
             width: 20px; 
             height: 20px; 
-            background: rgba(255,255,255,0.5);
-            display: block;
             margin: 8px; 
+            box-shadow: 0 0 0 2px rgba(255,255,255,0); 
             border-radius: 50%;
+            transition: box-shadow 0.3s ease;
         }
+        #dot li a{
+            background: rgba(255,255,255,0.7); 
+            width: 100%; 
+            height: 100%; 
+            display: block; 
+            border-radius: 50%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+        #dot li.active {box-shadow: 0 0 0 2px rgba(255,255,255,1);}
+        #dot li.active a {transform: scale(0.4);}
         #dot li a em {display: none;}
-        #dot li.active a {background: rgba(255,255,255,1);}
         
-         /* contents */
+        /* contents */
         #contents {text-align: center; color: #fff;}
         #contents > div {height: 100vh; line-height: 100vh;}
         #contents > div h2 {font-size: 70px; font-weight: 200; text-transform: uppercase;}
         #contents > div h2 strong {font-weight: 700; font-style: italic;}
         
         /* section */
-        #section1 {background:radial-gradient(ellipse farthest-corner at center top, #A3A1FF, #3A3897);}
+        #section3 {background:radial-gradient(ellipse farthest-corner at center top, #A3A1FF, #3A3897);}
         #section2 {background:radial-gradient(ellipse farthest-corner at center bottom, #3AA17E, #00537E);}
-        #section3 {background:radial-gradient(ellipse farthest-corner at center top, #29ABE2, #4F00BC);}
+        #section1 {background:radial-gradient(ellipse farthest-corner at center top, #29ABE2, #4F00BC);}
         #section4 {background:radial-gradient(ellipse farthest-corner at center top, #FF5300, #45145A);}
         #section5 {background:radial-gradient(ellipse farthest-corner at center bottom, #852D91, #312A6C);}
         #section6 {background:radial-gradient(ellipse farthest-corner at center top, #FBB03B, #D4145A);}
@@ -63,15 +75,14 @@
     </div>
 
     <div id="contents">
-        <div id="section1"><h2>언어의 한계가 곧 <strong>자기 세계의 한계다.</strong></h2></div>
-        <div id="section2"><h2><strong>교육은</strong> 최상의 노후 대비책이다.</h2></div>
-        <div id="section3"><h2>계획 없는 목표는 한낱 <strong>꿈에 불과하다.</strong></h2></div>
-        <div id="section4"><h2>용기란 공포를 1분 더 <strong>참는 것이다.</strong></h2></div>
-        <div id="section5"><h2><strong>욕망을</strong> 이성의 지배 하에 두어라.</h2></div>
-        <div id="section6"><h2>교육의 위대한 목표는 앎이 아니라 <strong>행동이다.</strong></h2></div>
+        <div id="section1"><h2>우아한 <strong>성공은</strong> 없다.</h2></div>
+        <div id="section2"><h2><strong>기회는</strong> 바로 옆에 있다.</h2></div>
+        <div id="section3"><h2>현실을 <strong>외면하지 말라.</strong></h2></div>
+        <div id="section4"><h2>공부는 우리 삶의 <strong>우선적 요소다.</strong></h2></div>
+        <div id="section5"><h2><strong>기회가</strong> 없으면 만들면 된다.</h2></div>
+        <div id="section6"><h2>모든 일은 <strong>스스로 해결하라.</strong></h2></div>
     </div>
     
-    <!-- script -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
     <script>
