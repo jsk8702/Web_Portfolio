@@ -13,15 +13,10 @@
             overflow: hidden;
             display: flex;
             justify-content: center;
-            align-content: center;
+            align-items: center;
             cursor: none;
         }
         
-        .word_box {
-            width: 100%; 
-            height: 100%;
-            margin: 0 auto;
-        }
         
         .word {
             color: #fff;
@@ -48,9 +43,7 @@
 </head>
 <body>
     <div class="cursor"></div>
-    <div class="word_box">
         <div class="word">JSK'WorldWideWeb</div>    
-    </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/2.1.3/TweenMax.min.js"></script>
     <script>
@@ -88,7 +81,7 @@
                 const gBCR = word.getBoundingClientRect();
                 const w = this;
                 const moveX = (x - gBCR.left - gBCR.width / 2) / gBCR.width * 5;
-                const moveY = (Y - gBCR.left - gBCR.height / 2) / gBCR.height * 5;
+                const moveY = (y - gBCR.left - gBCR.height / 2) / gBCR.height * 5;
 
     //            console.log(moveX);
                 transform(moveX, moveY);

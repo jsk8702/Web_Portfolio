@@ -146,3 +146,11 @@ viewport 에서 상대적인 위치로 반환한다. 즉, viewport의 시작지�
 
 6. 자바 스크립트에서 함수 실행문은 window.addEventListener("효과", 속성); 이다.
 제이쿼리와 비교하면  $(window).효과(function(){속성}); 과 같다. 
+
+7. const {x, y} = e;  =>  여기서 변수를 소문자 x, y 로 했으면 하단에 
+const moveX = (x - gBCR.left - gBCR.width / 2) / gBCR.width * 5;
+const moveY = (y - gBCR.left - gBCR.height / 2) / gBCR.height * 5;
+여기서도 소문자 써야 한다. 그래야 인식된다.
+
+8. 바디에 가운데 오는 속성 쓰고서 텍스트 태그를 div로 감싼 다음에 또 가운데 오는 태그 쓰면 
+가운데 오지 않는다. 명심 할 것.
