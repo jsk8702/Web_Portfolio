@@ -1,0 +1,161 @@
+리베하얀 전체 초기화 CSS 파일 분석
+사이트: https://www.youtube.com/watch?v=aSWxSkxOvGw&list=PL_6yF2upGJYtmmrp2RIvzjT33dmW9cSwP&index=26
+파일 다운: https://blog.naver.com/rebehayan/221279171255
+
+<html4, css1,2 초기화 부분>
+1. 보통 html4, css1,2 모바일로 사용하지 않는다. 웹 전용이다.
+
+2. @import url(http://fonts.googleapis.com/earlyaccess/notosanskr.css); = 이걸로 웹폰트 링크하고,
+body,div,dl,dt,dd,h1,h2,h3,h4,h5,h6,form,fieldset,p,th,td,input,textarea,select,button,pre,a{font-family:'Noto Sans KR', sans-serif; font-size:16px; color:#222;} = 이걸로 웹 폰트 적용한다.
+보통 사이트 마다 전용이자 주 폰트가 1개 있다. 많으면 2개 정도 있다. 초보는 1개만 쓰는게 좋다. 여기서는 전용 폰트를 Noto Sans KR 과 보조용으로 sans-serif 를 사용한 것이다.
+여기서 font-size:16px; 는 전체 사이트에 적용되는 폰트 사이즈다.  주로 본문 내용 텍스트 크기다. 헤더나 사이드 크기는 아니다. 가장 많이 쓰니까 공용으로 
+작성한 것이다. 그러면 메인에서 매번 적용할 필요가 없다.
+
+3. textarea {width:100%;} = 텍스트 작성하는 영역은 100% 사용하도록 적용.
+
+4. select,input,img, button {vertical-align:middle;} = 폼 요소와 이미지요소, 또는 폼 요소 간에는 모두 인라인 요소다. 
+이렇게 인라인 요소 끼리 가로로 만나면 높이가 어긋나는 경우가 있다. 특별한 경우에는 포지션 줘서 맞춰야 하지만, 일반적으로
+어긋난 경우에는 vertical-align:middle 을 사용하면 맞춰진다. 
+
+5. ul, ol {list-style-type:none; } = 목록 앞에 숫자나 도트 붙는 것을 없애준다.
+
+6. .hide,legend,hr,caption span {position:absolute; left:-3000%;} = 코드 상에는 존재하지만 실제로는 필요 없는 설명글, 제목 같은 경우, 
+display: none; 처리하면 한국형 웹 접근성 검사에서 지적받는다. 따라서 웹 브라우저 상에서 멀리 보내서 존재는 하지만 보이지는 
+않게 하는 방법이다. 특히 숨겨진 제목 같이 특별히 따로 안보이게 하고 싶으면 여기에 나온 .hide 사용하면 된다. 해당 객체에
+클래스 주고 이름을 hide 라고 주면 자동으로 웹상에서 안보인다. 그리고 그냥 caption에 position:absolute; left:-3000% 주면
+크롬에서 표의 열 가로사이즈를 정렬 할 수 없는 오류가 발생한다. 그래서 caption안에 span을 줘서 보내버리는 것이다. 
+
+7. em, address { font-style:normal;} = em, address는 기본적으로 이텔릭 체로 나온다. 그래서 일반 기본 텍스트로 나오게 하기 위해서
+font-style:normal 로 적용한다.
+
+8.  table { border-collapse:collapse; border-spacing:0; width:100%;} = border-collapse:collapse는 셀 끼리 만나면 보더가 서로 겹쳐져서,
+보더가 1개만 있는 효과를 준다.  border-spacing:0; 은 셀의 여백을 없애준 것이다. width:100%는 table 너비를 100%로 맞춰준다.
+
+9. a { color:#666; text-decoration:none;} = a태그 링크 색깔을 바꿔 준 것이고, 링크에 밑줄 생기는 효과를 제거했다.
+
+10. a:focus, a:hover { text-decoration:none;} = a태그에 초점을 맞추거나 마우스를 올렸을 때 밑줄이 생기지 않게 초기화 하였다.
+물론 스타일 상 색상 변화나 밑줄이 필요하다면 컬러값 주고, underline 선택하면 된다.
+
+11. fieldset, img, button{border:0;} = 필드셋과 버튼에 보더가 있어서 보더를 없애주고 초기화 한다. 이미지는 a태그 안에 있을 때 
+특정 브라우저에서 선이 생기는 경우가 있어서 크로스 브라우징을 위해 넣었다.
+
+12. input[type=text]::-ms-clear {display: none;} = ::-ms-clear 는 IE10, 엣지에서 텍스트 작성 시, 입력 칸에 입력하면 옆에 텍스트 취소
+버튼이 자동으로 생기는 태그이다. 따라서 이건 그걸 안보이게 해서 초기화 시켜주는 것이다.
+
+13. select { padding:0 0 0 5px; height:38px; border:1px solid #e3e3e3;} = 이건 셀렉트 관련 태그인데, css 수정 사항에 따라 다르므로
+일정한 양식은 없다. 전체 디자인을 보고 수정해야 한다.
+
+14.  
+textarea,
+input[type="file"],
+input[type="password"],
+input[type="text"] { text-indent:4px; border:1px solid #ccc;} = 텍스트 폼 관련 사항이다. 전체 디자인을 보고 수정해야 한다.
+
+15. select { height:30px \0IE8;} /* IE8 전용*/ = IE8 버전 전용으로 작성 한 것이다. IE8에서 작업시 13번 셀렉트는 지워도 무방하다.
+
+16. 
+select:focus, textarea:focus,
+input[type="password"]:focus,
+input[type="file"]:focus,
+input[type="text"]:focus { border:1px solid #555;} = 셀렉트 폼과 텍스트 입력 폼이 초점을 받았을 때 더 명확하게 보이기 위해
+보더를 주었다. 별도의 디자인이 있다면 그걸로 하면 되고, 없다면 그냥 써도 된다. 초점 이동시 명확하게 보이게 하기 위함이므로
+다른 효과나 특성이 있으면 그거 쓰면 된다.
+
+17. 
+textarea[readonly="readonly"],
+button[readonly="readonly"],
+select[readonly="readonly"],
+input[readonly="readonly"],
+ 
+textarea[disabled="disabled"],
+button[disabled="disabled"],
+select[disabled="disabled"],
+input[disabled="disabled"] { background:#f5f5f5; border-color:#d4d4d4;} = 모든 폼 요소의 읽기 전용과 비활성화 시에 디자인 효과이다.
+별도의 효과를 가지고 있다면 그거 사용해도 된다. 아니라면 이게 있어야 좋으니 그냥 쓰면 된다. 폼 읽기전용과 비활성화 상태는
+일반 상태와 엄격히 다르니 다르게 표시해 주는 효과라서 꼭 필요하다.
+
+18. 
+input[type="password"],
+input[type="file"],
+input[type="text"] { height:34px; line-height:34px;}
+input[type="file"] { width:100%;}
+input[type="radio"] { vertical-align:text-bottom;} = 일반적으로 쓰는 폼 효과들의 전체 디자인 요소들이다. 수정 가능하다.
+
+19. .clear { zoom:1; clear:both;} = IE6~7 버전 전용이다. 6,7버전은 css2 인식 못해서 대체용으로 나온 것이다. 효과는 클리어픽스와 같다.
+float 이후에 해당 영역이 사라지는 현상을 방지하는 기능이다.
+
+20. .clear:after { content:""; display:block; clear:both;} = 클릭어픽스 효과이다. float를 주면 해당 태그의 부모 태그에 높이가 사라진다. 
+그리고 그 옆에 요소가 해당 요소 영역을 침범하게 된다. 이러한 문제를 방지하기 위해, 가상 요소를 이용해서 이렇게 작성하면
+float한 해당영역이 사라지지 않는다.
+
+21. 
+.skip { position:absolute; left:0; top:-100px; z-index:1000; width:100%; height:60px; line-height:60px; text-align:center; font-size:20px; color:#fff; transition:all 0.5s; background:#666;}
+.skip:focus { top:0;} = 스킵은 본문 바로가기 태그이다. 웹 접근성에서 반복메뉴를 피해야 하기 때문에 생긴 것이다. 해당 태그
+를 누르면 본문으로 바로가게 된다. 보통 바디 나오고 그 다음에 바로 a 태그로 바로 넣어야 한다.
+
+22. 코딩 전체의 전체선택자 * 는 쓰지 마라. 시스템에 엄청난 무리를 준다. 사이트가 느려진다. 특정 대상의 자식 태그 전체 같이 범위가 있는
+전체 선택자는 상관 없지만 코딩 전체의 전체 선택자는 쓰면 큰일 난다.
+
+
+
+
+
+
+<html5, css3 초기화 부분>
+사이트: https://www.youtube.com/watch?v=oWvyEil1j4M&list=PL_6yF2upGJYtmmrp2RIvzjT33dmW9cSwP&index=26
+파일 다운: https://blog.naver.com/rebehayan/221279341846
+
+1. 웹폰트는 무겁고, 느리고, 용량이 크며, 브라우저 종류나 os 등에 따라 적용이 안되는 경우가 있다.
+그리고 모바일에서는 적용 안된다. 그래서 일반 PC 브라우저에서는 쓰는 경우도 있지만,
+모바일에서는 절대 쓰지 않는다.
+
+2. outline: 0 !important; = 웹에서는 안 쓰는 모바일 전용 태그다. 버튼이나 아이콘 클릭하면 주변 
+외각에 테두리가 생기는 것을 방지하는 기능이다. 다만 이러한 기능에 호불호가 있어서
+모바일에서도 쓰는 경우와 안 쓰는 경우가 있다. 보통 모바일 웹에서는 사용한다.
+
+마진과 패딩을 0으로 초기화 해주고 가로는 html, body {width:100%;} 해준다.
+
+ -webkit- 접두사는 ios에서 크롬 기반 브라우저나 애플기반 브라우저에서 사용할때 쓰인다.
+모바일 전용 태그이다. (안드로이드, 아이폰 전용이다.) 
+
+touch-callout: none;  = 휴대폰에서 화면을 지속해서 누르고 있으면 메뉴가 나오는 기능이 있는데,
+그걸 방지하는 기능이다.
+
+user-select: none; = 사용자가 모바일에서 클릭하거나 드래그 하는 것을 못하게 하는 기능이다.
+
+tap-highlight-color: rgba(0, 0, 0, 0); = 링크를 클릭하면 해당 링크 바탕이 파란색으로 변하는 경우
+가 있다. 그것을 흰색 바탕으로 바꿔서 바탕이 없는 것처럼 보이게 하는 기능이다.
+
+배경색은 body에 주는데 특정 색이 있으면 그걸로 하고, 아니면 그냥 background: #fff; 로 줘서
+흰색으로 만든다.
+
+min-width: 320px; = 아이폰3 나 갤러시1 같은 구형 버전은 화면이 작다. 그래서 그런 구형 폰 보다
+더 작은 화면으로 출력되지 않게 하기 위해 320px로 최소화면을 고정한 것이다. 더 작은 해상도로 
+줄어들면 가로 스크롤이 생긴다. 즉, 320픽셀 까지는 가로 스크롤 없이 화면이 나오므로,
+구형 휴대폰에서도 동작하게 하기 위한 장치이다. 반응형에서 많이 쓴다.
+
+text-size-adjust: none; = 아이폰에서 뷰포트가 변경이 되면, 자동으로 텍스트 사이즈가 제어 되는데
+그것을 방지하는 기능이다.
+
+word-wrap: break-word; word-break: break-all; = 모바일에서 가로 사이즈가 협소하면 텍스트가 늘어나는
+경우가 있다.  즉, 모바일에서 너비가 좁아서 텍스트가 해당 구역을 벗어나서 출력되는 문제가 
+발생 할 수있다. br 태그 를 써도 되지만, 그럼 다른 디바이스에서 작동이 안될 수도 있다.
+이런 문제를 해결하기 위해, 디바이스 장비에 따라 해당 텍스트 공간에 따라서 자동으로 줄 내림을
+하는 기능이다. 
+
+font-family: 'Noto Sans KR', sans-serif; color: #727272;} = 모바일에서 웹 폰트 쓰기로 했다면 
+여기 써도 되고, 안 쓴다면, 여기서도 쓸 필요 없다.
+
+main, header, section, nav, footer, aside, article, figure {display: block;} = html5 에서 새로 생긴 
+요소들이다. 이건 모두 인라인 요소라서 블럭 구조로 대체해 준 것이다.
+
+input::-webkit-input-placeholder{color:#b5b5b5; font-size:12px; line-height:100%;} = 원래는 placeholder를
+직접 선택할 수 없다. 그러나 이렇게 하면 선택 할 수 있다. 선택해서 css효과를 넣어준 것이다.
+따라서 필요한 부분에 ::-webkit-input-placeholder 이것만 넣으면 원하는 placeholder를 css 효과로 꾸며
+줄 수 있다.
+
+-webkit-appearance:none; = input의 type 종류 중에는 박스가 둥근 경우가 있다. 이걸 쓰면
+모든 박스가 사각형으로 동일하게 초기화 시켜주게 된다.
+
+
+ 
