@@ -214,7 +214,7 @@ footer div a {
     border: 1px solid #b3b3b3; 
     line-height: 22.5px; font-size: 8px; color: #4e4e4e;
 }
-footer p {padding: 0 0 7.5px;}
+footer p {padding: 0 0 7.5px; font-size: 0;}
 footer p a {position: relative; margin: 0 6px; font-size: 10px; color: #9e9e9e;}
 footer p a:after {
     content: ""; 
@@ -223,7 +223,7 @@ footer p a:after {
     top: 50%; 
     width: 1px; 
     height: 8.5px; 
-    background: #000;
+    background: #9e9e9e;
     transform: translateY(-50%);
 }
 footer p a:last-child:after {display: none;}
