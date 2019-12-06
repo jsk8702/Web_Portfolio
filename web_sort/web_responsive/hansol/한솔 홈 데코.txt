@@ -1,8 +1,9 @@
 <1. 한솔 홈 데코 반응형 실무 사이트 - psd 없이 사이트 만들기 준비>
-1. 주소: http://www.hansolhomedeco.com/home/
+1. 모델 주소는 http://www.hansolhomedeco.com/home/ 이곳이며,
 국내 우수 웹 사이트를 모아놓은 디비컷(https://www.dbcut.com/)에서 선택했다.
 만들어 볼 사이트는 최신 사이트, 컨탠츠 양이 많은 것이 좋다. 그래야 포트폴리오와
 사이트 제작에 실력이 향상된다.
+깃허브 주소: https://jsk8702.github.io/Web_Portfolio/web_sort/web_responsive/hansol/index07.html
 
 2. 사이트 전체 캡쳐와 슬라이드 이미지 캡쳐 프로그램 두개를 사용해서 사이트 전체 사진과
 해당 사이트에 모든 이미지를 다운 받을 것이다. 구글 앱 스토어에서 Full Page Screen Capture,

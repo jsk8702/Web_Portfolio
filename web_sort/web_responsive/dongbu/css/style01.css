@@ -1,0 +1,20 @@
+@charset "UTF-8";
+
+/* header */
+header {padding: 0 30px 30px; background: linear-gradient(to right, #042e6f, #042e6f 50%, #f2f2f2, #f2f2f2 50%, #f2f2f2);}
+header .visual img {width: 100%;}
+header h1 {position: absolute; top: 0; left: 30px;}
+header > ul {display: flex; position: absolute; top: 0; right: 30px; width: 170px; background: #f2f2f2;}
+header > ul li {flex: 1; padding: 0 0 0 18px; line-height: 70px;}
+header > ul li a:before {
+    content: ""; 
+    display: inline-block; 
+    width: 23px; 
+    height: 23px; 
+    background: url(../img/icon.png) no-repeat; 
+    vertical-align: middle;
+}
+header > ul li:first-child a:before {background-position: 0 0;}
+header > ul li:last-child a:before {background-position: -23px 0;}
+header #lnb {position: absolute; left: 0; top: 0; padding: 0 232px; width: 100%; box-sizing: border-box;}
+header #lnb nav {border-bottom: 1px solid rgba(255,255,255,0.5);}

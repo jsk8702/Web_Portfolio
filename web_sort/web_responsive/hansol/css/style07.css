@@ -4,7 +4,7 @@ body {min-width: 1280px;}
 
 /* header */
 header {position: relative; height: 81px; text-align: center;}
-header h1 {position: absolute; left: 50px; top: 0; padding: 14px 0 0 0;}
+header h1 {position: absolute; left: 50px; top: 0; padding: 14px 0 0;}
 header h1 a {
     display: block; 
     width: 110px; 
@@ -47,7 +47,7 @@ header .spot li:last-child a{padding-right: 0;}
 .visual {position: relative; padding: 0 50px;}
 .visual .con > div {height: 640px;}
 .visual .con .slide {
-    background: url(../img/bg_main02.jpg) no-repeat center; 
+    background: url(../img/bg_main01.jpg) no-repeat center; 
     color: #fff; 
     font-size: 32px; line-height: 46px;}
 .visual .con .slide p {padding: 19px 0 0 0; font-size: 20px; line-height: 100%;}
@@ -95,7 +95,7 @@ header .spot li:last-child a{padding-right: 0;}
 }
 .magazine .slide_box > div:nth-child(1) {margin-left: -1280px;}
 .magazine .slide_box > div:nth-child(3) {margin-left: 1280px;}
-.magazine .slide_box .left {overflow: hidden; float: left; position: relative; width: 800px; height: 430px;}
+.magazine .slide_box .left {overflow: hidden; position: relative; float: left; width: 800px; height: 430px;}
 .magazine .slide_box .left img {width: 100%;}
 .magazine .slide_box .left div {
     position: absolute; 
@@ -272,7 +272,11 @@ header .spot li:last-child a{padding-right: 0;}
 .notice article > div.right p {position: absolute; right: 30px; top: 0;}
 
 /* banner */
-.banner {padding: 55px 0; background: url(../img/bg_banner.jpg) no-repeat center top;}
+.banner {
+    padding: 55px 0; 
+    background: url(../img/bg_main_business.jpg) no-repeat center top;
+    opacity: 0.5;
+}
 .banner ul {display: flex; width: 1180px; margin: 0 auto;}
 .banner ul li {flex: 1; padding: 0 0 0 20px;}
 .banner ul li:first-child {padding: 0;}
@@ -286,10 +290,10 @@ header .spot li:last-child a{padding-right: 0;}
     box-sizing: border-box;
 }
 .banner ul li a strong {display: block; font-size: 23px; color: #000;}
-.banner ul li:nth-child(1) a {background: url(../img/bg_main_bussiness_link01.jpg) no-repeat;}
-.banner ul li:nth-child(2) a {background: url(../img/bg_main_bussiness_link02.jpg) no-repeat;}
-.banner ul li:nth-child(3) a {background: url(../img/bg_main_bussiness_link03.jpg) no-repeat;}
-.banner ul li:nth-child(4) a {background: url(../img/bg_main_bussiness_link04.jpg) no-repeat;}
+.banner ul li:nth-child(1) a {background: url(../img/bg_business_link01.jpg) no-repeat;}
+.banner ul li:nth-child(2) a {background: url(../img/bg_business_link02.jpg) no-repeat;}
+.banner ul li:nth-child(3) a {background: url(../img/bg_business_link03.jpg) no-repeat;}
+.banner ul li:nth-child(4) a {background: url(../img/bg_business_link04.jpg) no-repeat;}
 
 /* footer */
 footer .top {background: #383f43;}
@@ -306,17 +310,17 @@ footer .top > div ul li:after {
     height: 8px; 
     color: #70767a;
 }
-footer .top > div ul li:last-child:after {display: none;}
 footer .top > div ul li a {color: #fff; font-size: 13px; line-height: 45px;}
+footer .top > div ul li:last-child:after {display: none;}
 footer .top > div div {float: right;}
 footer .top > div div p {
     display: inline-block; 
     width: 242px; 
     height: 45px; 
-    text-align: center; 
-    line-height: 45px; 
     background: #2a3033; 
     color: #fff;
+    text-align: center; 
+    line-height: 45px; 
     font-size: 13px;
 }
 footer .top > div div p strong {padding: 0 0 0 15px; font-size: 20px;}
@@ -327,7 +331,7 @@ footer .top > div div select {
     color: #191919; 
     font-size: 12px; 
     box-sizing: border-box;
-    border: 0;
+    border: none;
     vertical-align: 3px;
 }
 footer .btm {padding: 40px 0 44px; background: #4c5459; text-align: center;}
