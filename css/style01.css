@@ -3,6 +3,7 @@
 /* layout */
 #wrap {width: 100%; margin: 0 auto;}
 #header {width: 100%; text-align: center;}
+#about {width: 100%; text-align: center;}
 
 /* container */
 .container {width: 1536px; margin: 0 auto; }
@@ -45,6 +46,20 @@
 #home .home_bg{text-align: center;}
 #home .home_bg .title {color: #fff; font-size: 28px; padding-top: 99px;}
 #home .home_bg .sub_title {color: #fff; font-size: 14px; padding-top: 35px;}
+
+/* about */
+#about .about_bg {height: 825px;}
+#about .about_bg .title {font-size: 36px; font-weight: bold; color: #000; padding: 45px 0 12px;}
+#about .about_bg .point i {color: #000; font-size: 34px; margin-bottom: 68px;}
+#about .about_bg .detail .left {float: left; width: 50%;}
+#about .about_bg .detail .left .left_bg{
+    text-align: center;
+    
+}
+#about .about_bg .detail .left .left_bg img {width: 576px; height: 576px; border-radius: 50%;}
+#about .about_bg .detail .right {float: right; width: 50%; text-align: left;}
+#about .about_bg .detail .right strong {display: block; color: #000; font-size: 18px; padding-bottom: 20px;}
+#about .about_bg .detail .right ul li {font-size: 14px; color: #000; line-height: 20px;}
 
 
 /* media query */
