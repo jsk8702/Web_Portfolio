@@ -1,6 +1,6 @@
 (function($){
     
-    $("#header .header #Mnav").click(function(e){
+    $(".ham").click(function(e){
         e.preventDefault();
         $(".header > ul > li").slideToggle();
     });
