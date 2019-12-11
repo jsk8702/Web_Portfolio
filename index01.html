@@ -18,8 +18,9 @@
     <link href="https://fonts.googleapis.com/css?family=Noto+Sans+KR:100,300,400,500,700,900&display=swap&subset=korean" rel="stylesheet">
     
     <!-- script -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    
     
     <!-- 익스플로어9 이하 버전에서 시멘틱 태그 인식시켜주는 기능, 주석처리가 아니다. -->
     <!-- HTLM5shiv ie6~8 -->
@@ -41,6 +42,7 @@
     <!-- //skip -->
     <div id="wrap">
         <header id="header">
+            <div class="row">
                 <div class="header">
                     <h1 class="hide">jsk의 포트폴리오</h1>
                     <div id="Mnav">
@@ -65,19 +67,20 @@
                         </ul>
                     </nav>
                 </div>
+            </div>
         </header>
         <!--   //header     -->
         <section id="home">
-            <div class="home_bg">
-                <p class="title">안녕하세요? 김주성입니다. 웹 퍼블리셔가 되고 싶어요!</p>
+            <div class="row">
+                <p class="titleH">안녕하세요? 김주성입니다. 웹 퍼블리셔가 되고 싶어요!</p>
                 <p class="sub_title">웹 표준성을 지키고, 웹 접근성을 생각하며, 반응형 웹을 기본으로 만들어 가겠습니다!</p>
             </div>
         </section>
         <!-- //home -->
         <section id="about">
-            <div class="about_bg">
+            <div class="row">
                 <h2 class="hide">자기소개</h2>
-                <div class="title">ABOUT</div>
+                <div class="titleA">ABOUT</div>
                 <div class="point"><i class="fa fa-id-card-o" aria-hidden="true"></i></div>
                 <div class="detail clearfix">
                     <div class="left">
@@ -111,6 +114,39 @@
             </div>
         </section>
         <!-- //about -->
+        <section id="skills">
+            <div class="row">
+                <h2 class="hide">보유기술</h2>
+                <div class="titleS">skills</div>
+                <div class="point"><i class="fa fa-cog" aria-hidden="true"></i></div>
+                <div class="skill_chart">
+                    <ul class="clearfix">
+                        <li><p class="chart" data-percent="80"><span class="percent"></span></p>HTML</li>
+                        <li><p class="chart" data-percent="80"><span class="percent"></span></p>CSS</li>
+                        <li><p class="chart" data-percent="40"><span class="percent"></span></p>JS/Jquery</li>
+                        <li><p class="chart" data-percent="80"><span class="percent"></span></p>PHOTOSHOP</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!--skills  -->
+        <section id="portfolio">
+            <div class="row">
+                <h2 class="hide">포트폴리오</h2>
+                <div class="titleP">Portfolio</div>
+                <div class="point"><i class="fa fa-desktop" aria-hidden="true"></i></div>
+                <div class="portfolio">
+                    <ul class="clearfix">
+                        <li><a href="web_sort/web_mobil/naver/index01.html"><img src="img/mobil_naver_cafe.jpg" alt="네이버 모바일 카페"></a><strong>모바일 네이버 카페</strong></li>
+                        <li><a href="web_sort/web_responsive/hansol/index07.html"><img src="img/hansol.png" alt="한솔 홈데코"></a><strong>한솔 홈 데코</strong></li>
+                        <li><a href="web_sort/web_responsive/mega/index21.html"><img src="img/mega.png" alt="메가박스"></a><strong>메가박스</strong></li>
+                        <li><a href="web_sort/web_responsive/practice/index.html"><img src="img/practice.png" alt="반응형 사이트"></a><strong>반응형 개인 사이트</strong></li>
+                        <li><a href="web_sort/web_standard/practice/index.html"><img src="img/standard.png" alt="웹 표준 사이트"></a><strong>웹표준 개인 사이트</strong></li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- //portfolio -->
     </div>
     <!-- //wrap -->
 </body>
