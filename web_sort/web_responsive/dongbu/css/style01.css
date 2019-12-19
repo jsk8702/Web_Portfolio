@@ -1,10 +1,21 @@
 @charset "UTF-8";
 
 /* header */
-header {padding: 0 30px 30px; background: linear-gradient(to right, #042e6f, #042e6f 50%, #f2f2f2, #f2f2f2 50%, #f2f2f2);}
+header {
+    padding: 0 30px 30px; 
+    background: linear-gradient(to right, #042e6f, #042e6f 50%, #f2f2f2, #f2f2f2 50%, #f2f2f2);
+}
 header .visual img {width: 100%;}
-header h1 {position: absolute; top: 0; left: 30px;}
-header > ul {display: flex; position: absolute; top: 0; right: 30px; width: 170px; background: #f2f2f2;}
+header h1 {position: absolute; left: 30px; top: 0; z-index: 31;}
+header > ul {
+    display: flex; 
+    position: absolute; 
+    top: 0; 
+    right: 30px; 
+    z-index: 30; 
+    width: 170px; 
+    background: #f2f2f2;
+}
 header > ul li {flex: 1; padding: 0 0 0 18px; line-height: 70px;}
 header > ul li a:before {
     content: ""; 
@@ -16,5 +27,84 @@ header > ul li a:before {
 }
 header > ul li:first-child a:before {background-position: 0 0;}
 header > ul li:last-child a:before {background-position: -23px 0;}
-header #lnb {position: absolute; left: 0; top: 0; padding: 0 232px; width: 100%; box-sizing: border-box;}
-header #lnb nav {border-bottom: 1px solid rgba(255,255,255,0.5);}
+header #lnb {
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+    z-index: 30; 
+    padding: 0 232px; 
+    width: 100%; 
+    box-sizing: border-box;
+}
+header #lnb nav {
+    position: relative; 
+    z-index: 30; 
+    border-bottom: 1px solid rgba(255,255,255,0.5); 
+    text-align: center; 
+    font-size: 0;
+}
+header #lnb nav > ul {display: inline-block; height: 70px; overflow: hidden;}
+header #lnb nav > ul:hover {overflow: visible;}
+header #lnb nav + div {
+    position: absolute; 
+    left: 0; 
+    top: 0; 
+    z-index: 29; 
+    padding: 0 30px;
+    width: 100%; 
+    height: 0; 
+    background: #042e6f;
+    opacity: 0;
+    transition: all 0.5s;
+    box-sizing: border-box;
+    background-clip: content-box;
+}
+header #lnb nav:hover + div {height: 330px; opacity: 1;}
+
+header #lnb nav > ul > li {display: inline-block; position: relative;}
+header #lnb nav > ul > li > a {
+    display: block;
+    position: relative;
+    width: 160px; 
+    height: 69px; 
+    font-size: 18px; 
+    color: #fff;
+    line-height: 69px;
+}
+header #lnb nav > ul > li > a:after {
+    content: ""; 
+    position: absolute; 
+    left: 50%; 
+    bottom: -1px; 
+    width: 0; 
+    height: 2px; 
+    background: #fff;
+    transition: all 0.5s;
+}
+header #lnb nav > ul > li:hover > a:after {left: 0;  width: 100%;}
+
+header #lnb nav > ul ul {
+    position: absolute; 
+    width: 100%; 
+    height: 230px;
+    padding: 22px 0 0; 
+    text-align: center;
+    opacity: 0;
+    transition: all 0.5s;
+}
+header #lnb nav > ul:hover ul {opacity: 1;}
+
+header #lnb nav > ul ul li {line-height: 39px;}
+header #lnb nav > ul ul a {position: relative; font-size: 14px; color: #fff; transition: all 0.5s;}
+header #lnb nav > ul ul a:hover {color: #2acef1;}
+header #lnb nav > ul ul a:after {
+    content: ""; 
+    position: absolute; 
+    left: 50%; 
+    bottom: -7px; 
+    width: 0; 
+    height: 2px; 
+    background: #2acef1;
+    transition: all 0.5s;
+}
+header #lnb nav > ul ul a:hover:after {left: 0;  width: 100%;}
