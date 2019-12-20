@@ -64,6 +64,73 @@ header #lnb nav > ul > li > a:after {
 }
 header #lnb nav > ul > li:hover > a:after {left: 0; width: 100%;}
 
+/* main */
+.info_box {width: 1175px; margin: 0 auto;}
+.info_box h2 {
+    padding: 58px 0 0; 
+    font-size: 21px; 
+    color: #5f5fb1; 
+    font-weight: normal; 
+    text-align: center; 
+    letter-spacing: 36px;
+}
+.info_box h2 span {color: #be5038;}
+.info_box li {float: left; margin: 45px 0 0 45px; width: 260px; position: relative;}
+.info_box li:nth-child(1) {margin-left: 0;}
+.info_box li:nth-child(5) {margin-left: 0;}
+.info_box li em {overflow: hidden; display: block; width: 100%; height: 170px;}
+.info_box li img {width: 100%; height: 170px; transform: scale(1); transition: all 0.5s;}
+.info_box li:hover img {transform: scale(1.1);}
+.info_box li .box > div {
+    padding: 40px 20px 0; 
+    height: 170px; 
+    transition: all 0.3s;
+    background: url(../img/obj01.png) no-repeat 287px 20px, 
+                url(../img/obj02.png) no-repeat 11px 211px;
+}
+.info_box li:hover .box > div {
+    background-position: 161px 20px, 11px 90px;
+    background-color: #aaa8aa;
+} 
+.info_box li:hover .box * {transition: all 0.5s;}
+.info_box li:hover .box * {color: #fff;}
+.info_box li .box h3 {font-size: 19px; color: #222; font-weight: normal; line-height: 28px;}
+.info_box li .box p {padding: 13px 0 0; font-size: 13px; color: #747774; line-height: 18px;}
+.info_box li .box > div div {
+    position: absolute; 
+    left: 20px; 
+    bottom: -10px; 
+    width: 220px; 
+    height: 54px; 
+    border-top: 1px solid #ccc; 
+    text-align: right; 
+    font-size: 13px; 
+    color: #666;
+}
+.info_box li .box > div div span {
+    padding-top: 10px;
+    display: inline-block;
+    width: 22px;
+    height: 13px;
+    font-size: 13px;
+}
+.info_box li .box .ico {
+    position: absolute;
+    left: 20px;
+    top: 137px;
+    width: 65px;
+    height: 65px;
+    color: #fff;
+    text-align: center;
+    line-height: 65px;
+    font-size: 13px;
+}
+.info_box li .box .ico.no1 {background: #5f5fb1}
+.info_box li .box .ico.no2 {background: #be5038}
+.info_box li .box .ico.no3 {background: #82bbb5}
+/* 완성되면 지울 것 */
+body {padding-bottom: 500px;}
+
 /* media query */
 @media (max-width: 768px) {
     

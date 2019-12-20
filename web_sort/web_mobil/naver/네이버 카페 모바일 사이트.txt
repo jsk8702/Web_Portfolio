@@ -1,6 +1,6 @@
 <유의사항>
-사이트: https://jsk8702.github.io/Web_Portfolio/web_sort/web_mobil/naver/index01.html
-
+작업 사이트: https://jsk8702.github.io/Web_Portfolio/web_sort/web_mobil/naver/index01.html
+강의 사이트: https://www.youtube.com/watch?v=yyxqexvTQBI&list=PL_6yF2upGJYs6z1O8LRz0KPK2UtjCSXtn&index=8
 1. 그리드맵에서 텍스트 높이가 실제 작업시 텍스트 Height 값이다.
 
 2. 디자인은 크기가 PSD 640px이 제일 좋다. 그거 보고 실제로는 그 절반 크기인 320픽셀로 작업한다.
