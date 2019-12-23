@@ -65,6 +65,21 @@ header #lnb nav > ul > li > a:after {
 }
 header #lnb nav > ul > li:hover > a:after {left: 0; width: 100%;}
 
+/* SKILLS */
+#SKILLS {width: 1175px; margin: 0 auto;}
+#SKILLS h2 {
+    padding: 58px 0 0; 
+    font-size: 21px; 
+    color: #5f5fb1; 
+    font-weight: normal; 
+    text-align: center; 
+    letter-spacing: 36px;
+}
+#SKILLS h2 span {color: #be5038;}
+.skills_box ul {width: 100%; margin: 45px 0 0 45px;}
+.skills_box li {float: left; width: 200px;}
+.skills_box li span {background: url(../img/skills_icon.png) no-repeat -867px 57px;}
+
 /* PORTFOLIO */
 #PORTFOLIO {width: 1175px; margin: 0 auto;}
 #PORTFOLIO h2 {
