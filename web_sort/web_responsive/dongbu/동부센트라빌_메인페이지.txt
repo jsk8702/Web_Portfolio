@@ -1,0 +1,677 @@
+<1. 동부센트레빌 홈페이지 헤더영역 메뉴 제작>
+강의 주소: https://www.youtube.com/watch?v=idJbG8v0cu8&list=PL_6yF2upGJYsFBBZMhUlZZ0VyBLor5JwL&index=11
+완성 사이트 주소: https://jsk8702.github.io/Web_Portfolio/web_sort/web_responsive/dongbu/index02.html
+
+1. header {background: linear-gradient(to right, #042e6f, #042e6f 50%, #f2f2f2, #f2f2f2 50%, #f2f2f2);}
+=> 이건 헤더의 바탕 배경색이 절반씩 다른 색으로 되어 있고 그 위에 백그라운드 이미지라서, linear-gradient
+를 이용해서 색상을 절반씩 나누어 준 것이다.
+
+2. 헤더의 전체 이미지 양쪽에 여백이 있다. 이건 패딩으로 준다. 근데 그렇게 하면 이미지가 커서 하단에
+스크롤바가 생긴다. 이미지에 header .visual img {width: 100%;} 이렇게 100% 주면 현재 공간에 꽉 차게 되서
+스크롤바가 생기지 않는다.
+
+3. 로그인과 조인 부분은 이미지 크기도 그렇지만 공간 배정이 50%씩 딱 맞아 떨어 지는 것이 나중에 
+꾸미기 좋다. 위치는 지정해 놨으니까 ul만 전체 너비 만들어 주고, display: flex; 주고 자식 요소에 
+flex: 1 을 줘서 공간을 2개로 쪼개준다.
+예) 
+header > ul {display: flex; position: absolute; top: 0; right: 30px; width: 170px;}
+header > ul li {flex: 1;}
+
+4. 이미지가 텍스트 앞에 있으면 before, 뒤에 있으면 after 로 해서 가상요소 넣어주고 background에 이미지 
+넣어주면 된다. 그리고 가상 요소는 반드시 display: inline-block;을 줘야 한다. 보통 a 요소에 가상요소
+넣는데, a요소는 인라인요소 라서 크기 지정이 안 되기 때문이다. 그러나 가상요소에 이미지 크기를 
+지정해줘야 하기 때문에 display: inline-block; 으로 처리해준다. 그리고 그냥 블럭요소로 바꿔주면,
+이미지가 텍스트 위로 올라가 버린다.
+
+5. 이미지 스프라이트 쓰면, 공통 부분은 만들어 놓고, 나머지는 위치 지정 정도만 background-position 으로
+잡아준다.
+예)
+header > ul li a:before {
+    content: ""; 
+    display: inline-block; 
+    width: 23px; 
+    height: 23px; 
+    background: url(../img/icon.png) no-repeat; 
+    vertical-align: middle;
+}
+header > ul li:first-child a:before {background-position: 0 0;}
+header > ul li:last-child a:before {background-position: -23px 0;}
+=> 이런식으로 해야지 나중에 햇갈리지 않고 수정도 간단하다.
+
+6. 포지션으로 위치를 지정했으면 거기에 이미지가 와도 포지션 먹인 것은 제일 위에 보인다. z-index가 필요 없다.
+
+7. nav에는 사실 그걸 감싸주는 div가 1개 필요하다. 네비게이션 하단에 라인이 있어야 하며, 네비게이션 메뉴를 눌렀을때,
+나오는 배경도 필요 하기 때문이다. 그리고 div에 양쪽 패딩을 줘서 여백을 주고, nav에 보더로 아래쪽에 선을 그리면,
+이미 div에 너비 100% 기능이 있어서 그것과 상쇄되고, 결국 브라우저 하단에 스크롤 바가 생기면서 
+너비가 엄청 길어진다. 기존 패딩값 까지 합쳐서 계산되어지는 것이다. 
+이럴 때는 박스 사이징 요소로 보더박스 값을 주면 해결된다.
+예)
+header #lnb {position: absolute; left: 0; top: 0; padding: 0 232px; width: 100%; box-sizing: border-box;}
+header #lnb nav {border-bottom: 1px solid rgba(255,255,255,0.5);}
+=> box-sizing: border-box 때문에 기존에 div 영역 안에서만 100%가 되고, 그 안에서 패딩값이 적용된다.
+
+8. ul 안에 ul li 가 있는 경우, 즉 대메뉴 안에 서브 메뉴가 있는 경우에는, 부모 ul li를 선택할 때 직접 선택자를 사용해서
+ul > li  > a  같은 방식으로 선택해줘야 한다. 그렇지 않으면 서브 메뉴의 ul li 까지 적용되어 버린다.
+메인 메뉴는 놔두고 서브메뉴는 처음에 안보여야 정상이다. ul > ul > li 는 서브메뉴로, display: none; 으로
+해서 안보이게 한다. 그리고 다시 한번 충고하지만, 대메뉴 안에 서브메뉴 같이 ul li ul li가 겹치는 경우에는
+반드시 직접 선택자를 사용해서 선택해 줘야한다. ul > li > ul > li 이런 식으로 말이다. 그렇지 않고 ul li ul li
+이런 식으로 설정하면, 메인 메뉴와 서브 메뉴 둘다 적용되어 버린다.
+
+9. li 요소는 블럭요소이다. 따라서 그냥 float: left, text-align :center; 한다고 li 요소들이 가로 가운데정렬 되지
+않는다. 따라서 먼저 ul li 에 display:inline-block 해서 인라인 성격을 주고, ul에 text-align: center를 주면,
+굳이 float: left 주지 않아도, 자연스럽게 ul li 들이 자동으로 가로 가운데 정렬이 된다. 인라인 구로로 변하기 때문에 
+text-align: center 도 적용이 되는 것이다.
+
+10. ul li들을 가로 정렬 한 다음에, li 사이에 좌우 여백을 주어야 한다. 그래야 장애인은 물론이고, 일반인도
+각 li 를 클릭하기가 편하다. 좌우 여백은 홈페이지에서 li 사이에 간격을 알아낸 다음에, 그것을 반으로 나눠서
+ul li의 좌우 여백 값으로 넣어주면 된다.
+
+11. a:after 의 부모 요소는 a 요소이다. 따라서 a:after 가 포지션을 absolute 주면, a 요소는 relative를 줘야 한다.
+
+12. header #lnb nav > ul > li > a:after 에 가상영역을 주고 너비와 높이를 줘서, header #lnb nav > ul > li > a
+아래에 라인을 만들었다. 그런데 위치를 position: absolute; 주고 bottom으로 줬기 때문에 대메뉴의 라인이
+헤더 전체 보더 라인과 겹치지 않고 위로 올라오게 된다. 이때는 bottom: -1px; 로 해주면 해당 가상 영역이 아래로
+내려가면서 자연스럽게 헤더의 보더 라인과 겹치게 되어서 자연스러워 진다. bottom: -2px; 하면 안된다.
+가상 영역의 높이 자체가 2px이라서 만약 bottom: -1px; 이라고 주면 li > a:after의 가상영역 선이 헤더 보다 밑으로
+내려가 보이게 된다.
+
+13.  li의 바닥선이 마우스 호버 했을 때 나타나는 효과는 다음과 같다. a:after의 width를 0으로 만들어서 처음에는
+보이지 않게 한다. 그리고 a:hover:after 를 줘서 a 요소가 마우스 호버된 다음의 가상요소에서 마우스 올렸을 때
+width에 값을 줘서 보이게 나타나게 한다. 그리고 transition: all 0.5s 주면 마우스 호버했을 때 선이 왼쪽에서 
+오른쪽으로 나타나게 된다. 이걸 실제 사이트 같이 바닥선이 가운데에서 양쪽으로 퍼지는 효과를 주려면,
+a:after에 left:50% 주고, a:hover:after에는 left:0 을 주면 마우스 호버 할때 가운데에서 선이 생기며 나타나는
+css 효과를 줄 수 있다.
+
+14. ul ul에 absolute 주면 ul li a 끝에 붙는다. ul은 블럭요소인데, 블럭 요소에 absolute 주면 
+padding이나 margin 빼고 순수 너비에 맞춰서 붙기 때문이다. 따라서
+header #lnb nav > ul ul 에는 position: absolute; width: 100%; 주고, 그 부모 요소
+header #lnb nav > ul > li 에는 position: relative; 를 주면 된다. 그러면 정상적으로 나오며 한쪽으로
+쏠려서 나오지 않는다.
+
+15. 헤드 메뉴 밑에 서브 메뉴가 있는데, 서브 메뉴는 늘려보면, 텍스트에 마우스가 호버 되었을 때만
+보더가 생긴다. 그 이유는 글씨 크기에만 링크가 적용 되어 있고 글씨 사이에는 링크가 적용되지 않기
+때문이다. 이럴때는 줄간격으로 조절해주자. 줄 간격 계산은 윗글자와 아랫글자 사이의 간격에 가운데를 잡고,
+기준으로 잡은 다음, 윗 글자 시작 부분부터 아랫글자 시작 부분까지 높이를 잰다. 그리고 그 영역을 포토샵
+선택 영역으로 잡은 다음에 선택영역의 하단 끝을 아까 잡은 글자 사이 간격 가운데 부분에 맞춘다.
+그리고 해당 텍스트의 위 아래 여백 부분을 재보면 글자 의 줄 간격이 나온다. 그럼 그 값을
+header #lnb nav > ul ul li 부분에 line-height값으로 주면 된다. 여기서는 39픽셀 나왔다. 이래서 줄간격이 중요하다. 
+만약 줄간격을 모르고 그냥 메인 메뉴와 서브 메뉴 사이 간격을 그냥 ul ul에 패딩으로 주면, 기존 줄간격
+과 더해져서 공간이 더 늘어나 버린다. 이렇게 해서 줄 간격을 알아야 패딩 값에서 그 만큼 빼고 줄 수 있다. 
+그리고 밑줄은 a요소에 줘야 한다. 여기서는 a요소의 가상요소를 줘서 거기에 주었다.
+마지막으로 서브메뉴를 보면 bottom 부분에서 텍스트와 약간의 간격이 있다. 이건 서브메뉴 중에서 가장
+바닥에 가까운 메뉴를 기준으로, 해당 메뉴 바닥과 서브메뉴 바닥 사이에 간격을 재는데, 보더 라인을 포함한
+높이를 재서 header #lnb nav > ul ul a:after 의 bottom에 -값으로 주자.
+동시에, header #lnb nav > ul ul a:hover {color: #2acef1;} 의 텍스트 색깔이 변화하는 애니메이션을 주기
+위해서는 header #lnb nav > ul ul a:after 에 transition: all 0.5s;을 준다.
+ 
+16. 마우스로 메뉴 텍스트에 호버하면 모든 서브 메뉴가 나오고 배경색도 변한다. 방법은 간단하다.
+nav ul li 에 마우스 호버 하면 nav ul li ul li 도 같이 적용되게 하면 된다.
+기존에 서브 메뉴인 header #lnb nav > ul ul 에는 display:none; 해주면 평소에는 안보이고,
+메인메뉴에 호버한 상태에서는 header #lnb nav > ul:hover ul 에서 display: block; 해주면 된다.
+그리고 이렇게 하면 상단 헤더에 텍스트 말고 일반 영역에 호버해도 서브메뉴가 나온다. ul이 block요소라서
+그렇다.  nav > ul을 인라인-블럭으로 하고, 본래 여기 있던 text-align: center는 부모요소인 nav에 옮겨주면
+된다. 그럼 가로 가운데 맞춤이 된다. 그리고 텍스트만 호버 적용 받는다. 
+
+17. 서브메뉴가 서서히 나타나게 하려면 opacity를 사용하면 된다. 
+header #lnb nav > ul ul 에는 opacity: 0; transition: all 0.5s; 줘서 투명하게 하고 
+애니메이션 효과를 준다. 그리고  대메뉴에 마우스를 호버한 header #lnb nav > ul:hover ul 에는 
+opacity: 1; 을 줘서 불투명 하게 하면 애니메이션이 자연스럽게 나온다.
+header #lnb nav > ul ul 이 header #lnb nav > ul:hover ul보다 앞선 시간대, 즉 부모 요소이므로 트랜짓션도
+header #lnb nav > ul ul에 주는 것이 맞다. 그리고 이렇게 한 다음에는 ul ul과 ul:hover ul 둘다 display:none
+이나 block을 지워줘야 한다. 그래야 애니메이션 효과가 나타난다. 근데 이렇게 하면 메인메뉴에
+조금만 마우스 가까이 가도 서브메뉴가 보인다. 이때는 대략 정신이 멍해진다. 이건 nav > ul 에 높이를 주고
+overflow: hidden을 줘야 한다. 그리고 마우스를 nav > ul:hover 에 호버하면 overflow: visible로 바꿔 주면 된다.
+그럼 평소에는 높이 밖이라서 안보이지만, 마우스를 호버하면 overflow: visible로 보이게 된다.
+예)
+header #lnb nav > ul {display: inline-block; height: 70px; overflow: hidden;}
+header #lnb nav > ul:hover {overflow: visible;}
+nav > ul 에 높이와 overflow: hidden 을 주면, 해당 높이를 벗어난 서브메뉴는 나오지 않는 것이다.
+
+또 다른 문제는 header #lnb nav 의 border-bottom 속성과 header #lnb nav > ul > li > a:after 의 
+가상요소 바닥선이 서로 붙지 않고 어긋나 버린다. #lnb nav > ul > li 들이 인라인-블럭 속성이라서,
+html에서 코딩 시 강제 줄내림을 하면 li 사이에 #nbsp 공백이 생겨 버리기 때문이다. 따라서 
+header #lnb nav 에 font-size: 0 을 줘서 공백을 제거해 주면 된다. 그러면 바닥선이 서로 잘 붙어있게 된다.
+
+18. 이제는 header #lnb nav > ul에 마우스 호버하면 #lnb nav > ul ul 서브메뉴가 나타나면서 영역 전체가 
+푸른 배경색으로 변하면서 변해서 보이는 효과를 줘야 한다.
+배경색 부분은 header #lnb nav의 형제 header #lnb div로 해준다. html 에는 그렇게 만들고 스타일은 
+함께 주기로 한다. 왜냐면 그래야 함께 변하기 때문이다. 스타일에는 header #lnb nav + div 이렇게
+같이 적용 해주고, position: absolute; left: 0; top: 0;  width: 100%; height: 330px;을 준다. 그리고 배경색을
+background: #042e6f; 주면 헤더가 모두 배경색에 잠겨버렸는데, 이검 z-index로 높여줘야 한다.
+
+header h1 {z-index: 31;} -> 로고 부분은 제일 위에 와야 하니까 31로 준다.
+header > ul {z-index: 30;} -> 로그인 부분
+header #lnb {z-index: 30;} -> 헤더 메뉴 부분
+header #lnb nav + div {z-index: 29;} -> 메인메뉴 부분과 배경색은 가장 낮은 z값을 준다. 그래야 기존에 
+로고, 로그인, 메뉴 부분이 다 나오기 때문이다.
+header #lnb nav {position: relative; z-index: 30;} -> 메인메뉴의 바닥 선을 보이게 하기 위해서 relative와 같이 준다.
+왜 relative를 줄까? 그건 나도 모른다.
+
+이제 메인메뉴에 마우스 호버해야 header #lnb nav + div 가 동시에 보여야 한다. 
+header #lnb nav + div 에는 height: 0; 줘서 높이를 없애고, header #lnb nav:hover + div {height: 330px;}에는
+높이를 주자. 나타나는 모습에 애니메이션 효과를 주기 위해서 header #lnb nav + div에 transition: all 0.5s; 를
+추가해 준다. 그리고 단순히 나타나는 것 보다 서서히 나타나는 모습을 주기 위해서 
+header #lnb nav + div 에는 opacity: 0;를 줘서 투명하게 하고, header #lnb nav:hover + div 에서는
+마우스 호버 하면 서서히 불투명 하게 보이기 위해 opacity: 1; 을 준다.
+
+19. 이제 서브메뉴에 마우스 오버 하면 해당 서브메뉴를 포함한 대메뉴에도 바닥선이 나타나게 해줘야
+한다. 이렇게 하기 위해서는 li에 효과를 줘야 한다. a에 하면 직접 효과가 가서 메인메뉴에는 효과가 적용
+안되고 서브메뉴에만 적용 된다. 기존에 대상을 #lnb nav > ul > li > a:hover:after를 
+#lnb nav > ul > li:hover > a:after 로 바꿔줘야 한다. 이렇게 해야 서브 메뉴에 마우스 호버 해도 해당 서브 메뉴가
+속한 메인 메뉴의 li에도 똑같이 바닥선이 적용 된다.
+예)
+header #lnb nav > ul > li:hover > a:after {left: 0;  width: 100%;}
+
+그리고 해당 서브 메뉴에서는 클릭이나 마우스 오버가 텍스트에만 적용된다. 따라서 텍스트 뿐만 아니라
+비어있는 영역에도 마우스 호버 시 효과각 적용 되도록 적용 범위를 빈 공간 까지 작용 시켜야 한다.
+즉 nav의 영역도 증가 시키고, div 배경도 유지되야 하는 것이다. 이건 서브 메뉴의 ul에 높이를 주면 된다.
+header #lnb nav > ul ul 에 높이 height: 230px;를 준다. 
+이건 header #lnb nav:hover + div {height: 330px; opacity: 1;} 에서 div 높이가 헤더 전체고,
+header #lnb nav > ul ul 에서 height: 230px은 메인 메뉴 높이 제외 하고 남은 서브메뉴 전체 높이이다.
+
+추가로 header #lnb nav > ul ul a -> 이게 부모 태그이다. 원래는 여기에 트랜짓션을 줘야 한다.
+header #lnb nav > ul ul a:hover {color: #2acef1;} -> 그냥 호버이다.
+header #lnb nav > ul ul a:after {transition: all 0.5s;} -> 가상요소는 부모태그가 아니다.
+-> 트랜짓션은 원래 ul ul a 가 부모 요소이므로 여기에 넣어줘야 한다. 다만, 제작 방법에 따라서
+호버나 에프터에 넣기도 한다. 방법에 차이일 뿐이다.
+
+20. nav와 div가 생기면서 배경색이 헤더 양쪽 끝 모두 적용된다. 그러나 실제 사이트에서는 양 끝 부분은 
+공간을 남겨두고 있다. 따라서 헤더 양 끝에는 패딩으로 빈공간을 만들어 줘야 한다. 
+header #lnb nav + div 에 padding: 0 30px; 을 줘서 빈 공간을 만들어 주고, box-sizing: border-box; 를 줘서
+패딩값이 기존 박스 사이즈 안에서 적용되도록 한다. 마지막으로 background-clip: content-box; 를 줘서
+배경색이 패딩이나 마진 값을 제외하고 안쪽으로 채워지기 해준다.
+
+21. 지금 헤더는 css 애니메이션으로 잡은 것인데, 이건 스킵 메뉴가 제대로 적용 되지 않아서
+웹 접근성에서는 좋지 않다.
+
+
+
+
+
+
+<2. 동부센트레빌 홈페이지 분양정보영역 제작>
+1. 먼저 제목인 센트레빌 분양 정보 먼저 작성해 준다. h2 요소로 넣어준다. 분양정보는 ul li a 요소로 만든다. 그리고 이미지는 
+관리자가 관리해야 하니까 백그라운드 이미지로 주는것이 아니라 img 요소로 준다. img의 src 속성으로 전경이미지로 넣을 것이다. 
+그리고 이미 이미지 제목이 있으니까 굳이 사용성에서 중복을 방지하기 위해 alt의 대체 텍스트 속성은 필요 없다.
+기본 구조는 main section h2제목 ul li a img h3소제목 순서이다.
+
+2. 보통 실무에서는 psd나 이미지의 텍스트를 복사해서 가져오지 직접 치지는 않는다.
+
+3. 소제목은 h3, 내용은 p, 상태표시 글은 span 등 각각 다른 요소로 만들어 준다. 그리고 전체가 a요소로 한번에 클릭되어야 하니까
+하단에 관심고객등록 버튼 같은 경우는 그냥 구색 갖추기에 불과하다. div로 만들어 준다. 이렇게 요소별로 나누어 줘야 
+HTML이나 css 에서 보기 편하고 작업하기 좋다.
+
+4. 각 li 들은 크게 바뀌는 것이 없다. 내용이야 텍스트 바꿔주면 되지만 문제는 이미지와 상태표시 글이다. 이미지는 경로를 바꿔주고
+상태표시 글은 span에 클래스를 줘서 바꿀수 있게 해주는 것이 좋다. 자주 바뀌는 부분은 이렇게 클래스나 아이디를 줘서 관리한다.
+
+5. 먼저 제목 먼저 꾸며준다. 제목의 상하좌우 여백은 먼저 패딩으로 꾸며준다.
+.info_box h2 {padding: 58px 0 41px; font-size: 21px; color: #777; font-weight: normal;} -> 제목이 두껍지 않으니까 font-weight: normal로 
+처리해준다.
+
+6. 분양정보영역 이 전체 화면에서 가운데 위치해 있다. 다른 섹션도 마찬가지이다. 하지만 하단이나 푸터는 자체 너비가 없고 전체 영역에서 가운데
+맞춤이다. 따라서 영역 별로 가운데 맞춰 주는 것이 좋다. 분양정보영역은 자체 너비를 계산해서 가운데 맞춤을 해주도록 한다.
+.info_box {width: 1175px; margin: 0 auto;} -> 분양정보영역의 너비만 포토샵으로 확인 한 다음에 margin: 0 auto; 로 가운데 정렬했다.
+정렬 했으면 이제 제목에 text-align:center 줘서 가운데 맞춤 해줄 수 있다. 제목에서 분양정보는 색깔이 다르다. span 으로 감싸주고 
+별도로 꾸며준다. 그리고 제목의 텍스트가 서로 떨어져 있는데, 이건 패딩이나 공백이 아니라 자간을 설정한 것이다.
+글자간 좌우 간격은 첫번째 텍스트와 두번째 텍스트 사이간격이다. 좌우자간은 letter-spacing: px; 로 준다.
+.info_box h2 {padding: 58px 0 41px; font-size: 21px; color: #777; font-weight: normal; text-align: center; letter-spacing: 36px;}
+
+7. 보통 하나의 영역에 li 여러개를 넣을 때는 보통 너비를 %로 준다. 그러나 신규 사이트나 내용이 별로 없을때 그렇게하면 
+형태가 매우 이상해 진다. 여기서는 픽셀로 맞춰주도록 한다. 데이터가 하나밖에 없다고 가정하고 작업을 해보겠다.
+먼저 li img의 크기 먼저 잡아준다. 이미지 크기를 이렇게 고정해서 넣어주는 이유는 해당 이미지가 1차원 적으로
+보여주는 것이 아니라 관리자가 관리하며 작업해 주는 이미지이다. 즉, 관리자가 그냥 크기에 상관없이 올리는 사진이기 때문에
+이미지 크기를 고정시켜 줘야 하는 것이다. 안그러면 이미지 마다 사이즈가 다를 경우 레이아웃이 틀어져 버린다.
+
+8. 이미지 하단에 텍스트 들은 잘 보면 텍스트 전체 좌우 상하에 간격이 일정하고, 하단의 라인도 그 간격에 맞춰서 중간에 끊겨 있다. 
+div로 텍스트 전체를 감싸주고 패딩으로 주는것이 좋다. img 요소 빼고 div로 감싸 준다. 그리고 스타일에서는 자손 선택자로
+div를 잡아줘야 <div>관심고객등록</div> 가 적용되는 것을 방지 할 수 있다. 
+.info_box li a > div{padding: 45px 20px 0px;} -> 일단 하단에는 여백이 없다고 가정하고 만든다.
+이렇게 하면 설명글인 p요소가 영역을 뚫어버린다. 이건 전체 영역을 잡아주는 너비가 없어서 그렇다. li에 영역에 너비를 잡아 주도록 한다.
+li 너비는 기존 img 너비로 잡아주고 img는 너비를 그냥 100%로 바꿔준다. 이제 소제목을 꾸며준다.
+.info_box li a h3 {font-size: 19px; color: #222; font-weight: normal;} -> 여기서 h3는 보통 굵은 글씨체이기 때문에 normal로 바꿔주는 것이
+좋다.
+
+9. h3 소제목에 위 아래로 높이 재서 줄간격을 먼저 알아보자. 28픽셀 나온다. 
+.info_box li a h3 {font-size: 19px; color: #222; font-weight: normal; line-height: 28px;} 
+그리고 기존에 .info_box li a > div {padding: 44px 20px 0px;} 에서 위에 패딩이 44픽셀에서 줄간격 제외하면 40픽셀 정도 나온다.
+40픽셀로 바꿔준다. 그리고 이제 설명 텍스트인 p 요소를 크기와 색깔을 지정한다. 물론, 실무에서는 스포이드로 찍지 않는다.
+psd에 있는 텍스트 색상 그대로 가져와야 한다. 반드시 타이틀 선택하고 그곳 패널의 색상에서 있는 색깔을 가져와야 한다.
+이제 소제목과 내용 사이에 줄간격도 계산해서 넣고 줄간격 빼고 위쪽 패딩값도 준다.
+.info_box li a p {padding: 13px 0 0; font-size: 13px; color: #747774; line-height: 18px;}
+
+10. 관심고객등록을 꾸밀 차례인데, 관심고객등록은 내용글이 있거나 없거나, 소제목이 2줄이나 1줄이거나 위치가 항상
+같아야 한다. 이 말은 관심고객등록의 영역이 바로 위에 소제목과 내용 영역에 영향을 받지 않는다는 의미다.
+position: absolute 로 고정시킨 거다. 그래야 내용이 추가 되어도 패딩을 주고 빼고 할 필요가 없다.
+영역 잡을 때 는  div가 2개니까 자식선택자도 선택해 줘야 한다. 
+.info_box li a > div div {} 이렇게 해야 관심고객등록 div를 선택할 수 있다. 당연히 기준이 되는 relative는 
+.info_box li a > div 이 된다. 
+.info_box li a > div {position: relative; padding: 40px 20px 0px;}
+
+문제는 이렇게 하면, div에 높이 를 안주고 위,좌우에 패딩만 준 상태이기 때문에, 앱솔루트를 먹인 관김고객등록의 
+영역이 사라지게 된다. 마우스로 실제 사이트에서 호버 했을때 나오는 h2 제목에서 div div관심고객등록 부분영역까지 
+높이로 잡아서 div의 높이로 준다. 물론 이미지 밑에서 부터 div 까지 잴수도 있다. 하지만 이미 패딩이 들어가서 
+박스 사이징을 해서 코딩이 더 길어지게 된다. 따라서 하면 패딩값을 빼주고 높이를 주는 것이 낫다. 
+.info_box li a > div {position: relative; padding: 40px 20px 0px; height: 170px;}
+
+그리고 div div의 보더 탑이 너비가 100%라서 해당 좌우 여백 없이 꽉 차있다. 너비를 계산해서 넣어주고, 
+레프트에 여백 너비 만큼 20픽셀을 줘서 가운데 오게 하자.
+.info_box li a > div div {position: absolute; left: 20px; bottom: 0; width: 220px; border-top: 1px solid #ccc;}
+이제 관심고객등록은 자체 높이를 주고 줄간격으로 가운데 오게 하겠다.
+.info_box li a > div div {position: absolute; left: 20px; bottom: 0; width: 220px; height: 54px; line-height: 54px; border-top: 1px solid #ccc;}
+텍스트가 오른쪽 정렬이니까 그것도 해주자. 
+
+화살표 이미지를 스프라이트 이미지에서 가져온다. 가져올때 그냥 위치만 가져오면 그 영역에 해당하는 이미지 모두 가져온다.
+따라서 정확하게 그 위치만 지정해 줘야 한다. 이미지 스프라이트로 이미지 가져 올때는 가상요소로 before나 after로 자겨오는 것이 좋다.
+여기서는 텍스트 뒤에 나타나야 하니까 after로 준다. 가상요소의 크기를 지정해서 원하는 이미지만 보이게 할 생각이다. 
+너비와 높이를 주자. 그리고 content는 인라인 요소이다. display: inline-block을 줘야지 크기를 지정 해줄 수 있다. 
+이제 백그라운드 에서 해당 이미지의 좌표를 적어줘야 한다. 해당 이미지가 전체 이미지의 왼쪽 상단 기준으로 60*25 지점에 있다.
+이걸 -값으로 바꿔서 줘야 한다.
+.info_box li a > div div:after {
+    content: ""; 
+    display: inline-block; 
+    width: 22px; 
+    height: 12px; 
+    background: url(../img/icon.png) no-repeat -60px -25px;
+}
+
+이제 div div의 텍스트 크기와 색상을 넣어주자. 그리고 잘 보면 화살표 이미지가 텍스트와 간격이 있다. 이건 가상요소에 마진을
+줘야 한다. 마침 가상요소는 인라인블록이니까 마진이 가능하다. 패딩을 주면 이미지가 포함되어 있는 공간 자체가 증가해서 
+이미지가 해당 방향으로 이동한다.  마진을 왼쪽으로 줘야 한다.
+.info_box li a > div div:after {
+    content: ""; 
+    display: inline-block; 
+    margin: 0 0 0 6px;
+    width: 22px; 
+    height: 12px; 
+    background: url(../img/icon.png) no-repeat -60px -25px;
+}
+
+분양중 아이콘은 다중 클래스를 줘서 기본 도형을 만들고, 특정 상황에 다른 모습을 주도록 한다. 다중 클래스로
+공통 모양의 아이콘을 만들어 두면 좋다. 클래스 ico는 공통으로 사용되고, no1 이냐 no2이냐에 따라 다르게 표현된다.
+여기서는 공통요소로 가로, 세로 크기, 줄간격, 텍스트 크기, 텍스트 색상, font-size 등이 있다. 근데 가로 세로 크기가
+적용 안된다. span 은 인라인 요소 이기 때문에 세로가 적용 안된다. 근데 어짜피 absolute 주면 자동으로 블럭 되니까 
+굳이 블럭 처리할 필요 없다. 문제는 relative 위치이다. li에 줘도 되고, li a에 줘도 된다.
+일단 기존에 .info_box li a > div 에서 relative를 찾아서 지우고, .info_box li 에 준다. 이제 기준점이 생겼으니
+공통 아이콘에 포토샵에서 찾은 위치로 아이콘 왼쪽 상단이 올 부분을 찾아서 적어준다.
+.info_box li a .ico {
+    position: absolute;
+    left: 20px;
+    top: 137px;
+    width: 65px; 
+    height: 65px; 
+    color: #fff; 
+    text-align: center; 
+    line-height: 65px; 
+    font-size: 13px;
+} -> 선택영역으로 찍어보면 캡쳐 화면에서의 아이콘 왼쪽 상단 시작 부위와 선택영역 오른쪽 하단 끝이
+만나는 점이 해당 아이콘 시작 위치지점이다.
+
+10. 이제 만들어진 li에 이미지가 확대되고 색깔이 변하는 애니메이션을 넣어 준다. transition을 활용한다.
+이미지 확대는 transform: scale이 좋다. 스케일은 원본에 원본 사이즈 주고 변할 요소에는 
+변해야 하는 비율을 적어줘야 한다.
+.info_box li img {width: 100%; height: 170px; transform: scale(1); transition: all 0.5s;} -> 원본이다. 
+비율은 1 = 100% 이다. 트랜짓션도 줘서 애니메이션 효과를 줬다. 
+.info_box li:hover img {transform: scale(1.2)} -> 마우스 호버 했을 때 1.2배 = 120% 이미지가 증가한다.
+
+문제는 그냥 이렇게 하면 정해진 영역이 없어서 li a img의 영역을 뚫고 나가 버린다. 따라서 일정한 영역을 
+만들어 줘야 한다. 여기서는 em요소로 이미지를 감싸서 영역을 만들어 본다. 그리고 블럭 처리한다.
+<em><img src="img/build1.png" alt=""></em> -> .info_box li em {display: block;}
+그리고 기존에 img에  width: 100%; height: 170px; 크기를 em에도 넣어준다. 참, em에 오버플로우 줘서
+hidden 처리 해야 이미지가 영역 벗어나면 벗어난 부분은 감춰준다. 이거 꼭 넣어줘라.
+.info_box li em {overflow: hidden; display: block; width: 100%; height: 170px;}
+.info_box li img {width: 100%; height: 170px; transform: scale(1); transition: all 0.3s;}
+.info_box li:hover img {transform: scale(1.1)}
+알아둬라. 이미지 확대는 가로 세로 늘리는 것 보다 스케일로 늘리는 것이 더 안정적이다.
+
+이제 배경색을 바꿀 차례다. 배경색은 li 색이 바뀌는 것이다. li에 호버하면 바로 직속 자식 div의
+배경색이 바뀌게 해준다. 그리고 부모 요소에 트랜짓션으로 애니메이션 효과를 준다.
+.info_box li a > div {padding: 40px 20px 0px; height: 170px; transition: all 0.5s;}
+.info_box li:hover a > div {background: #aaa8aa;}
+그리고 a 요소의 텍스트 색깔로 배경색이 변하면서 흰색으로 변한다. 근데 이건 그냥 li:hover a > div
+에 주면 적용이 안된다. 그래서 a 요소 전체선택자로 줘야 한다.
+.info_box li:hover a * {color: #fff;}
+그리고 전체 선택자로 트랜짓션 줘서 애니메이션 효과도 주자. 
+.info_box li:hover a * {transition: all 0.5s;}
+.info_box li:hover a * {color: #fff;}
+근데 이렇게하면 .info_box li:hover a 관련 전부 적용되니까 다른 a 요소의 트랜짓션에서 시간이 
+다른 경우를 제외하고는 지워도 무방하다.
+.info_box li a > div {padding: 40px 20px 0px; height: 170px; transition: all 0.5s;} ->
+.info_box li a > div {padding: 40px 20px 0px; height: 170px;}
+
+마우스가 호버 되면 배경색 변하고 관심고객등록 메뉴 옆에 화살표도 이미지 색상이 변해야 한다.
+이미지 스프라이트 사용하니까 경로만 찾아서 호버 할때 다른 색깔 이미지로 대체해주면 된다.
+이미 전대 div div:after 에서 가상 요소에 백그라운드 이미지를 줬으니까 이번에는 호버 했을때
+백그라운드-포지션으로 이미지의 위치만 잡아주면 된다. 
+.info_box li a > div div:after {
+    content: ""; 
+    display: inline-block; 
+    margin: 0 0 0 6px;
+    width: 22px; 
+    height: 12px; 
+    background: url(../img/icon.png) no-repeat -60px -25px;
+    transition: all 0.5s;
+} -> 트랜짓션을 줬다.
+.info_box li:hover a > div div:after {background-position: -60px -5px;}
+참고로 여기서 트랜짓션을 준 이유는 a 전체선택자는 before, after는 적용되지 않기 때문이다.
+준다면 전체 선택자에서 before, after도 같이 넣어주면 되지만, 어짜피 1줄 밖에 안쓰니까
+코드 낭비라서 그냥 이렇게 따로 줬다. 만약에 이게 화살표가 위 아래로 이동하면서 변하느
+애니메이션이 싫다면, 그냥 안줘도 된다.
+
+11. 이제 각 li에 이미지를 넣어보겠다. 멀티백그라운드를 사용한다. 먼저 기본이 되는 li a > div에 
+백그라운드 url 을 넣는다.
+.info_box li a > div {
+    padding: 40px 20px 0px; 
+    height: 170px;
+    background: url(../img/sales_obj01.png) no-repeat 0px 0px,
+                url(../img/sales_obj02.png) no-repeat 0px 0px,    
+                url(../img/sales_obj03.png) no-repeat 0px 0px;   
+}
+-> 각기 다른 이미지를 url 이용해서 쉼표로 구분하여 넣어줬다. 이렇게 하면 3개가 동시에 나온다.
+이렇게 하면 li에 호버 했을 때, 이미지는 배경색에 가려진다. 이건 나중에 수정해야 한다.
+원인은 .info_box li a > div 의 멀티 백그라운드와 .info_box li:hover a > div 의 백그라운드가
+충돌해서 그렇다. 일단 .info_box li:hover a > div 를 주석처리 한다.
+
+이제 애니메이션을 꾸며줘야 한다. 애니메이션을 만드는 방법은 먼저 완성된 장면을 만들고 
+시작하는 장면을 만들어야 한다. 멀티 백그라운드에서 이미지 위치 지정은 딱히 방법이 없다.
+이미지 좌표로 직접 먹여 가면서 잡아야 한다. 브라우저 콘솔 모드에서 직접 수치 넣어주면서
+잡아보면 된다.
+.info_box li a > div {
+    padding: 40px 20px 0px; 
+    height: 170px;
+    background: url(../img/sales_obj01.png) no-repeat -180px -160px, 
+                url(../img/sales_obj02.png) no-repeat -229px 120px, 
+                url(../img/sales_obj03.png) no-repeat 104px 130px;
+}
+이제 호버했을대를 만들어야 하니까 li에 호버한 div에 백그라운드-포지션으로 바꿔준다. 그리고 url
+의 이미지 위치좌표만 넣는다. 이렇게 해도 이미 .info_box li a > div 에서 각 li의 이미지 url 주소를
+가지고 오기 때문에 상관 없다. 그리고 동시에 이전에 주석처리한 .info_box li:hover a > div
+의 배경색도 여기에 background-color 로 입력해 준다. 그러면 충돌이 없다.
+.info_box li:hover a > div {
+    background-position: -180px -160px, -229px 120px, 104px 130px; 
+    background-color: ##aaa8aa;
+}
+이제 호버 이전 상태인 .info_box li a > div에서 좌표를 이용해서 이미지가 안보이게 숨겨준다. 수정하라고.
+숨겨줄때 한쪽만 숨기지 말고 대각선 등으로 숨겨주면 애니메이션 효과에서 더 멋지게 나온다. 수정하라고.
+따라서 숨길때는 x,y 축을 균등하게 수치를 줘서 숨겨야 한다. 수정하라고.
+.info_box li a > div {
+    padding: 40px 20px 0px; 
+    height: 170px;
+    background: url(../img/sales_obj01.png) no-repeat -260px -240px, 
+                url(../img/sales_obj02.png) no-repeat -309px 180px, 
+                url(../img/sales_obj03.png) no-repeat 204px 210px;
+}
+그리고 트랜짓션은 .info_box li a > div 에 transition: all 0.3s; 넣어주자. 조금 바르게 나오게 하자.
+
+12. 이제 li가 완성되었다. 이런 식으로 하나를 완성하고 html을 복사하는 것이 좋다.
+li를 복사하자. float 써도 되지만, css3 를 사용해 보기 위해 flex사용해본다. flex를 사용하면 n/1로 공간을
+나눠 갖는다. ul에 flex 사용하면 ul li에는 차지할 공간을 적어야 한다. li 1개당 공간 1개 먹으니까
+flex: 1 이 된다.
+.info_box ul {display: flex;}
+.info_box li {flex: 1; width: 260px; position: relative;}
+아차! 근데 이렇게 flex 주면 li 사이에 패딩 줄때, 4개 중에 2개는 불규칙 하게 패딩이 커진다. 어쩔수 
+없다. back해서 그냥 float로 주자.
+.info_box li {float: left; width: 260px; position: relative;}
+li 사이에 여백은 한쪽에 줘보겠다. 맨 처음은 퍼스트 차일드로 없애줄거다.
+.info_box li {float: left; padding: 0 0 0 45px; width: 260px; position: relative;}
+.info_box li:first-child {padding: 0;}
+여기서 또 문제가 있다. 패딩으로 왼쪽에 주니까 분양중 아이콘이 왼쪽으로 쏠리게 된다.
+패딩 때문에 너비가 늘어나서 그렇다. 마진으로 줘야겠다. 그리고 분양예정 아이콘을 만들어 줘야 한다.
+첫번째 li에는 <span class="ico no2">분양중</span> 으로 만들어 주고,  기존에 아이콘 꾸며 준 것에서
+백그라운드만 바꿔준다.
+.info_box li a .ico.no1 {background: #94c83d;}
+.info_box li a .ico.no2 {background: #042e6f;}
+
+13. 이제 마지막 더보기 버튼을 만들어 보자. a요소로 되어 있는데, 화면에 고정 요소라서
+클래스를 주자.  
+<a href="#a" class="btn_more">더보기</a>
+버튼은 또 재활용이 가능 하기 때문에 특정 부모 요소에 상속시키지 않는 것이 좋다.
+스타일에 그냥 .btn_more {} 만 적으라는 의미다. 상속 단계 적으면, 나중에 이 버튼만 쓸때 
+도 경로를 바꿔줘야 한다. 그래서 그냥 이렇게만 쓴다. 그리고 보더를 만들어 주고 박스 사이징 줘서
+보더 박스로 영역 안에 보더를 만들자. 참, a요소 안에 div로 하나 감싸주자. 그래야 꾸미기 좋다.
+<div class="btns center"><a href="#a" class="btn_more">더보기</a></div>
+.btn_more {width: 140px; height: 44px; border: 1px solid #042e6f; box-sizing: border-box;}
+이렇게 div로 감싸주는 이유는 이렇게 한 다음에 .btns.center 에 텍스트를 센터로 주면 가운데 정렬이 되기 
+때문이기도 하지만, 스타일 가이드 라는 것이 있는데, 이런 식으로 규격을 갖추어야 가이드에
+따라 꾸며주기가 용이하기 때문이다. .btn_more에 인라인 블럭 넣어줘야 가로 세로 사이즈가 먹힌다.
+이제 폰트 사이즈와 텍스트 컬러, line-height 줘서 세로 가운데 정렬 시켜주자. 가운데 정렬도 넣어주자.
+더 보 기 사이에 자간도 7픽셀 넣어준다.
+.btn_more {
+    display: inline-block; 
+    width: 140px; 
+    height: 44px; 
+    border: 1px solid #042e6f; 
+    box-sizing: border-box; 
+    font-size: 16px; 
+    color: #042e6f;
+    line-height: 44px;
+    text-align: center;
+    letter-spacing: 7px;
+}
+이제 가상요소로 아이콘을 이미지 스프라이트 해서 가져온다. 아이콘과 텍스트 사이에 자간 빼고
+공간이 8픽셀 있으니까 왼쪽 마진으로 8픽셀 주자.
+.btn_more:after {
+    content: ""; 
+    display: inline-block; 
+    margin: 0 0 0 8px;
+    width: ; 
+    height: ; 
+    background: url(../img/icon.png) no-repeat -60px -25px;
+}
+이제 더보기 버튼과 li 사이에 공간 계산 해서 패딩을 줘야 하는데, 더보기 버튼은 계속 해당 자리에 있어야
+하니까 .info_box > ul + * {padding-top: 30px;} 이렇게 줘서 인포 박스 ul 다음에 오는 것은 모두 위쪽으로
+패딩을 일괄적 적용 시킨다.
+
+14. info_box > ul에 클래스 이름을 clear라고 강의 처럼 똑같이 하면, ul이 li의 float 때문에 영역을 잃어버린다.
+그러면 공간이 확보 안되서 .info_box > ul + * {padding-top: 30px;} 가 의미 없어진다.
+나는 clearfix 사용하니까 ul 이름을 clearfix라고 해야 한다.
+
+
+
+
+<3. 동부센트레빌 홈페이지 가이드 및 뉴스영역 제작>
+1. 가이드 영역은 info_box 안에 만들어 준다. 어짜피 같은 영역으로 묶어 주는게 좋다. 그리고 
+좌우 나누줄껀데, article로 각각 나누어 준다. 뉴스는 따로 섹션을 만들어서 넣어주자. 기존에 
+info_box 밑에 news라는 클래스의 섹션이 들어간다.
+
+근데 이렇게 넣다 보면,  info_box의 div class="guide_box" 가 위에 ul > li 부분을 그대로 상속 받아서
+가운데 정렬로 나온다. 그래서 구조를 수정해야 한다. guide_box를 별도의 섹션으로 빼주도록 한다.
+
+2. 먼저 가이드 섹션 부터 본다. 클래스 guide 아티클은 phone 아티클과 float:left로 나누어 지고, 
+.guide 안에서는 h2와 ul이 float:left로 나뉘어 진다. 그리고 ul > li 도 float:left 준다. 
+이제 li 안에 아이콘을 넣어야 되는데, 공간 여백 주고 a요소에 직접 백그라운드 url로 준다. 다만,
+li 마다 아이콘이 다르니까 :nth-child() 사용해서 준다. a 요소 안에 background 속성으로 아이콘
+이미지를 불러오자. 백그라운드에서 이미지 위치를 탑으로 주면 자동으로 상단 가운데 위치하게 된다.
+.guide_box .guide ul li:nth-child(1) a {background: url(../img/ico_main_util01.png) no-repeat top;}
+두번째 아이콘 이미지는 사진이 짤린다. 텍스트 크기 조정 해주고 캡쳐 이미지의 사이즈와 비교해 
+봐야 한다. 이렇게 줘도 짤리는 사진은  가로 사이즈가 필요하다. 일단 전체 li a에 text-align:
+center 주고, 이미지가 잘리는 백그라운드만 width를 준다. 캡쳐 이미지 참고해서 너비를 넣어준다.
+그리고 .guide_box .guide h2 에 패딩을 오른쪽에만 주자.
+.guide_box .guide h2 {float: left; padding: 0 43px 0 0; color: #000; font-size: 30px; line-height: 40px; font-weight: normal;}
+
+3. 만약에 여기서 패딩으로 0 43px 0 으로만 주면 문제가 있다. 그러면 패딩이 왼쪽에도 붙어서 h2가 안쪽으로 들어가게 된다.
+반드시, 0 43px 0 0 으로 줘서 왼쪽에는 패딩 안주게 해야 한다.
+
+3. 이제 가이드는 얼추 되었으니 phone 부분을 꾸며준다. phone 안에 div 한테 float:left 준다. 
+.guide_box .phone > div -> 자손 선택자로 바로 아래 div  만 선택해 줘야 한다.  그리고 가이드와 폰
+사이에는 라인이 있다. 그걸 위해서 먼저 폰의 왼쪽에도 패딩을 줘서 공간을 만들어 준다.
+ .guide_box .phone {padding: 0 0 0 55px;}
+그리고 섹션에 클리어픽스 줘서 뉴스 섹션이 가이드 박스 섹션 침범하지 못하게 공간 정리해 주자.
+이제 소제목에 font-size와 color를 주자. 텍스트 굵기도 보통으로 해줘야 한다.
+.guide_box .phone h2 {font-size: 15px; color: #777; font-weight: normal;}
+그리고 div 끼리 선택하는데 여기서는 고정된 메뉴로 파악해서 first-child를 사용한다. 그러나
+유동적인 메뉴에서는 이런식으로 쓴면 안된다. 가미가-제 된다. 퍼스트-어벤 아니 차일드는
+캡쳐 이미지 보고 폰트 사이즈와 컬러 구며준다.
+.guide_box .phone > div:first-child span {font-size: 25px; color: #042e6f;}
+두번째 div는 last-child로 꾸며주는데, 잘 보면 h2와 p요소는 같은 라인에 있고, div만 밑에 따로
+떨어져 있다. 그래서 h2와 p만 먼저 같이 선택해 준다. 두개는 float: left 를 주고 div만 따로 clear:both
+를 주면 된다. 그러면 h2와 p만 같이 위에 올라가고, div는 아래로 내려간다.
+이제 div:last-child 의 텍스트 를 손봐야 한다. 여기서는 모두 같은 형태라고 보고 작업한다.
+.guide_box .phone > div:last-child {font-size: 15px;color: #777; font-weight: normal;}
+이제 p요소에는 왼쪽에 패딩, div요소에는 위에 패딩을 줘서 거리를 유지해 준다.
+.guide_box .phone > div:last-child p {padding: 0 0 0 25px;} -> p요소는 기존에 h2와 함께 있는거 말고 따로
+만들어서 스타일 줘야 한다.
+.guide_box .phone > div:last-child div {clear: both; padding: 15px 0 0;}
+이제 .guide_box .phone > div:last-child 에 line-height 100% 줘서 기타 여백 없이 맞춰주고, h2와 p 요소의
+위치를 동선에 맞출 차례다. 지금은 보면 아마 p요소가 살짝 위로 올라가서 깨져 있을 것이다.
+.guide_box .phone > div 여기에 virtical-align: middle 줘도 깨진다.  이럴때는 포지션으로 직접 설정해
+주는 수밖에 없다. last-child에 포지션으로 탑을 줘서 맞춰준다.
+.guide_box .phone > div:last-child {position: relative; top: 3px; font-size: 15px;color: #777; font-weight: normal; line-height: 100%;}
+이렇게 주면 가이드 부분에 아이콘이랑도 높이가 맞아지게 된다.
+이제 div 끼리 사이를 벌려야 한다. 마지막 div에 왼쪽으로 패딩을 주자.
+.guide_box .phone > div:last-child 에 padding:  0 0 0 55px; 을 준다.
+이제 guide_box 자체와 상단 더보기 버튼 사이에 간격을 줘야 한다. 마진으로 준다. 맨 처음 가운데 정렬 할때 사용한 마진을 이용하자.
+.guide_box {width: 1175px; margin: 60px auto 0;} 이렇게 수정하자.
+이제 가이드와 폰 사이에 가상요소 만들어서 라인 만든다. .guide_box .phone 에 포지션 relative 준다. 그리고 여기에 가상요소
+만들어서 꾸며 준다.
+.guide_box .phone:after {content: ""; position: absolute; left: 0; top: 0; width: 1px; height: 80px; background: #666;}
+
+4. 이제 뉴스 부분 만들어 준다.  먼저 섹션 자체 배경색 먼저 넣어주고, 그다음 guide_box 섹션과 너비를 같게
+해준다. 가운데 정렬은 margin: 0 auto; 로 해준다. 그 다음 바로 h2 아이콘 먼저 꾸며 준다. 
+그리고 텍스트가 정중앙에 오게 하기 위해서 line-height와 text-align: center 준다.
+이제 h2와 텍스트가 있는 ul, li 에 float를 준다. 근데 ul, li가 밑으로 내려간다. 가로 사이즈를 주지 않아서 
+그렇다. ul li a에 블럭처리 하고 너비와 높이를 준다.
+.news li a {display: block; width: 360px; height: 260px;}
+그리고 영역이 깨져서 너비를 줘도 div 배경에 다 들어가지 못한다. .news > div에 클리어픽스를 줘서 영역을
+잡아주자. 왜 ul에 안주는가? 나도 모른다. 그냥 div에 주는데 ????
+아무튼 그렇게 하고, li 사이에 공간을 주기 위해 패딩을 주는데, 문제는 왼쪽 li가 h2와 거리가 더 멀다.
+따라서 li 끼리 패딩 레프트로 45 주고, ul에 패딩 레프트 15 줘서 왼쪽만 60픽셀 줘서 h2 가 더 떨어지게 할 수 있다.
+대신 이렇게 하기 위해서 기존에 ul,li를 같이 주던 조건은 따로 플루트 주고 li에만 패딩을 줘야 한다.
+.news li a 에 패딩을 주는데 40px 30px 0을 준다. 0을 주는 이유는 이미 a요소의 height: 260px 값이 있기 때문이다.
+그리고 박스 사이징 줘서 보더 박스 해줘야 패딩 때문에 li a 가 커지지 않는다. 그리고 h3에 폰트 크기, 굵기, 색상
+다 주고, line-height 준다음에 그 줄간격 보고 li a요소의 패딩 탑 수치를 수정해줘야 한다. 기존에 패딩 탑이
+40으로 나왔지만, 줄 간격 주고 나면 줄간격 제외하고 35픽셀이 된다.
+.news li a {
+    display: block; 
+    padding: 35px 30px 0; 
+    width: 310px; 
+    height: 260px; 
+    background: #fff; 
+    box-sizing: border-box;
+}
+.news li a h3 {font-size: 24px; color: #222; font-weight: normal; line-height: 36px;}
+그리고 h3에 말 줄임표는, 원래 css로도 2줄, 1줄 말 줄임 가능 하지만, 익스플로어 에서는 동작하지 않는다.
+따라서 이건 그냥 점으로 찍어서 하드 코딩하고, 이런거 담당하는 벡앤드 개발자에게 넘기자.
+마지막으로 p, span 도 꾸며주고, h3의 패딩은 그냥 p요소에 넣어서 이걸로 꾸며준다.
+.news li a p {padding: 22px 0 20px; font-size: 14px; color: #666;}
+.news li a span {font-size: 12px; color: #666;}
+이제 .guide_box 자체에 margin-bottm을 줘서 뉴스섹션과 거리를 만든다.
+.guide_box {width: 1175px; margin: 60px auto 55px;}
+
+5. li a요소에 마우스 호버하면 보더에 애니메이션 효과를 주도록 하자.
+span 요소 밑에 em 요소 4개 넣는다. 애니메이션 효과 보면, 북서쪽과 남동쪽에서 라인이
+좌우로 나위어 지면서 각 꼭지점으로 이어진다. 이건 보더 효과로 안되고 직접 그려야 한다.
+li a에 relative를 준다. 
+.news li a {
+    display: block; 
+    position: relative;
+    padding: 35px 30px 0; 
+    width: 310px; 
+    height: 260px; 
+    background: #fff; 
+    box-sizing: border-box;
+}
+그 다음 .news li a em {position: absolute; background: #606060;} 으로 공통위치와 색상을 만든다.
+그리고 nth-of-type(1) 부터 선택해서 위치, 너비, 높이를 만들어 준다. 가로면 width가 100%, 세로면
+height가 100% 가 된다. nth-of-type(n) 은 해당 종류가 순서없이 그냥 나열되었을 때 선택하는 거다
+em은 ul li 처럼 자식 목록 순서가 아니라 평등하게 그냥 나열되 있으니 nth-child 하면 인식 못한다.
+이럴때는 비순서목록나열에 쓰이는 nth-of-type을 쓴다.
+그리고 a:hover em:nth-0f-type(n) 을 만들어서 호버 했을 때 도착점을 100%로 해주고 기존
+100%는 0으로 해서 시작점으로 만들어 준다. 당연히 .news li a em 에 트랜짓션은 줘야 한다.
+명심해라. 라인 그릴 때 왼쪽0 위쪽 0에서 가로 100% 주면 왼쪽에서 오른쪽으로 그려지고
+오른쪽0, 아래0 에서 가로 100% 주면 오른쪽에서 왼쪽으로 선이 그려진다. 세로도 같은 방식으로
+시작지점에서 그려진다. 
+.news li a em {position: absolute; background: #606060; transition: all 0.5s;}
+.news li a em:nth-of-type(1) {left: 0; top: 0; width: 0%; height: 1px;}
+.news li a em:nth-of-type(2) {left: 0; top: 0; width: 1px; height: 0%;}
+.news li a em:nth-of-type(3) {right: 0; bottom: 0; width: 1px; height: 0%;}
+.news li a em:nth-of-type(4) {right: 0; bottom: 0; width: 0%; height: 1px;}
+.news li a:hover em:nth-of-type(1) {left: 0; top: 0; width: 100%; height: 1px;}
+.news li a:hover em:nth-of-type(2) {left: 0; top: 0; width: 1px; height: 100%;}
+.news li a:hover em:nth-of-type(3) {right: 0; bottom: 0; width: 1px; height: 100%;}
+.news li a:hover em:nth-of-type(4) {right: 0; bottom: 0; width: 100%; height: 1px;}
+호버에는 바뀌는 점만 집어 넣어 주면 된다. 변화 없는 점은 또 적으면 중복이라 코드만 늘어난다.
+.news li a:hover em:nth-of-type(1) {width: 100%;}
+.news li a:hover em:nth-of-type(2) {height: 100%;}
+.news li a:hover em:nth-of-type(3) {height: 100%;}
+.news li a:hover em:nth-of-type(4) {width: 100%;}
+더 부드럽게 나가려면, .news li a em 에 opacity: 0주고 .news li a:hover em {opacity: 1;} 주면
+호버 했을 때 더 부드럽게 나온다. 더 서서히 나오면서 서서히 지워주는 효과를 준다.
+
+
+
+
+
+
+<4. 동부센트레빌 마무리 하기 푸터영역~! - 웹퍼블리셔를 위한 강의 HTML5 CSS3>
+1. 푸터에서 헤더 바로가기 버튼은 메인 맨 아래에 넣어도 되고, 푸터 맨 위에 넣어도 된다.
+일단 a요소에 헤더 아이디 넣고, 헤더에도 아이디 줘서, 누르면 헤더로 가게 해주면 된다.
+
+2. 개인정보처리방침 부분은 div > a요소로 했는데 그냥 div > ul > li > a로 해도 상관 없다.
+하단 주소는 address 안쓰고 그냥 사용하자. p요소에 넣어서 작성해 본다.  
+텍스트 목록 간에 공간은 그냥 띄우거나 #nbsp 해도 되지만, span을 넣어서 나누어 보겠다.
+
+3. 바로가기 메뉴는 a요소로 만들었다. absolute 주면 블럭 처리 되니까 display 안줘도 된다.
+이미지를 백그라운드로 가져오는데, 가져와서 검사 모드로 직접 위치 시켜서 화살표 이미지가
+정 중앙에 오게 맞춰저야 한다.
+footer > div > a {
+position: absolute; 
+right: 0; 
+top: -25px; 
+width: 39px; 
+height: 49px; 
+background: url(../img/icon.png) no-repeat -157px 8px #22a5d5; 
+color: transparent;
+}
+
+4. 개인정보 처리 방침 부분은 float: left다. 즉 왼쪽 정렬이다. 따라서 마진은 오른쪽에 줘야 한다.
+마진을 주는 이유는, 패딩으로 주면 a요소 사이에 빈 공간도 선택이 되어버리기 때문이다.
+텍스트 간에 줄간격은 먼저 100% 줘서 초기화 시켜주고 직접 확인해서 작성하는게 좋다.
+footer > div .left{float: left; line-height: 100%;}
+footer > div .left p {padding: 13px 0 0; line-height: 21px; font-size: 13px; color: #747b85;}
+
+5. span은 그냥 여백을 줘서 공간을 만들어 주자.
+footer > div .left p span {padding: 0 13px 0 0;}
+리셋의 form에서 border-radius 삭제해주자. 그래서 캡쳐 이미지 처럼 보더가 라운드로 안나오게 해준다.
+
+6. select 는 뭐랄까, 글자만 흰색이고, 보더가 없다. 하단에만 1개 있다. 이럴때는 보더를 없애주고, 
+바닥에 보더 한개만 만들어 주면 된다.
+footer > div .right select {background: none; border: none; border-bottom: 1px solid #7d828a; font-size: 10px; color: #fff;}
+텍스트 옆에 삼각형 도형은 백그라운드 이미지로 가져오는데, 그냥 가져오면 주변 이미지도 가져오니까
+after 가상요소를 이용해서 가져오겠다. 먼저 셀렉트 자체 너비와 높이를 주고, 텍스트-인덴트로 들여쓰기 해준다.
+그리고 텍스트 옆에 셀렉트 고유 삼각형 버튼은 없애줘야 한다. 셀렉트 삼각형 없애줄때는 구글, 안드로이드
+에서는 appearance: none; -webkit-appearance: none; 써주고, 익스플로어에서는 
+footer > div .right select::-ms-expand {display: none;}
+이렇게 써준다.  이제 백그라운드로 이미지 불러와서 위치 시키고 너비와 높이 준다. 그리고 이번에는 굳이
+검사 페이지 에서 맞춰 볼 필요 없이 캡쳐 이미지 에서 거리 계산해서 right와 top 를 준다.
+right는 거리 재서 수치 넣어주고, 탑은 이미지가 텍스트와 정 중앙에 있으니까 top:50% 주고,
+해당 이미지의 높이가 6픽셀 이니까 margin-top: -3px로 절반 크기의 마진을 주면 해당 이미지가 
+텍스트와 같이 정중앙에 온다.
+footer > div .right select::-ms-expand {display: none;}
+footer > div .right:after {
+    content: ""; 
+    position: absolute; 
+    right: 20px; 
+    top: 50%; 
+    margin-top: -3px;
+    width: 8px; 
+    height: 6px; 
+    background: url(../img/icon.png) no-repeat -221px -5px;
+}
+
+마지막으로 footer > div .right select 의 배경색은 푸터 배경색으로 주면, 리스트 추가 될 때 텍스트가
+잘 보인다.
+footer > div .right select {
+    width: 134px;
+    height: 29px;
+    background: #272f3c; 
+    border: none; 
+    border-bottom: 1px solid #7d828a; 
+    font-size: 10px; 
+    color: #fff;
+    text-indent: 20px;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+
+
