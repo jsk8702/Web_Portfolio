@@ -65,9 +65,10 @@ header #lnb nav > ul > li > a:after {
 }
 header #lnb nav > ul > li:hover > a:after {left: 0; width: 100%;}
 
-/* SKILLS */
-#SKILLS {width: 1175px; margin: 0 auto;}
-#SKILLS h2 {
+/* ABOUT */
+#ABOUT {width: 1175px; margin: 60px auto 55px;}
+
+#ABOUT h2 {
     padding: 58px 0 0; 
     font-size: 21px; 
     color: #5f5fb1; 
@@ -75,10 +76,96 @@ header #lnb nav > ul > li:hover > a:after {left: 0; width: 100%;}
     text-align: center; 
     letter-spacing: 36px;
 }
-#SKILLS h2 span {color: #be5038;}
-.skills_box ul {width: 100%; margin: 45px 0 0 45px;}
-.skills_box li {float: left; width: 200px;}
-.skills_box li span {background: url(../img/skills_icon.png) no-repeat -867px 57px;}
+#ABOUT h2 span {color: #be5038;}
+#ABOUT .about{margin-top: 45px;}
+#ABOUT .about article {float: left;}
+.about_left h3 {
+    float: left; 
+    padding: 0 30px 0 0; 
+    color: #000; 
+    font-size: 30px; 
+    line-height: 40px; 
+    font-weight: normal;
+}
+.about_left ul {float: left;}
+.about_left ul li {float: left; padding: 0 30px 0 0;}
+.about_left ul li span {display: inline-block; padding: 70px 0 0;}
+.about_left ul li div {text-align: center; font-size: 15px; color: #002870;}
+.about_left ul li:nth-child(1) span {background: url(../img/s_icon01.png) no-repeat top; width: 95px; height: 60px;}
+.about_left ul li:nth-child(2) span {background: url(../img/s_icon02.png) no-repeat top; width: 95px; height: 60px;}
+.about_left ul li:nth-child(3) span {background: url(../img/s_icon03.png) no-repeat top; width: 95px; height: 60px;}
+.about_left ul li:nth-child(4) span {background: url(../img/s_icon04.png) no-repeat top; width: 95px; height: 60px;}
+.about_left ul li:nth-child(5) span {background: url(../img/s_icon05.png) no-repeat top; width: 95px; height: 60px;}
+
+.about_right {position: relative; padding: 0 0 0 30px;}
+.about_right:after {content: ""; position: absolute; left: 0; top: 0; width: 1px; height: 149px; background: #666;}
+.about_right h3 {
+    float: left; 
+    width: 100%;
+    padding: 0 43px 0 0;
+    margin-bottom: 10px;
+    color: #000; 
+    font-size: 30px; 
+    line-height: 40px; 
+    font-weight: normal;
+}
+.about_right ul li {text-align: left; font-size: 15px; color: #002870; line-height: 30px;}
+
+.about_down {position: relative; background: #f4f5f9;}
+.about_down:before {
+    content: ""; 
+    position: absolute; 
+    left: -364px; 
+    top: 0; 
+    width: 364px; 
+    height: 360px;  
+    background: #f4f5f9;
+}
+.about_down:after {
+    content: ""; 
+    position: absolute; 
+    right: -364px; 
+    top: 0; 
+    width: 364px; 
+    height: 360px;  
+    background: #f4f5f9;
+}
+.about_down > div {width: 1175px; padding: 50px 0; margin: 0 auto;}
+.about_down h3 {
+    float: left; 
+    width: 95px; 
+    height: 95px; 
+    background: #042e6f; 
+    color: #fff; 
+    line-height: 95px; 
+    text-align: center; 
+    font-size: 14px; 
+    font-weight: normal;
+}
+.about_down ul {float: left; padding: 0 0 0 15px;}
+.about_down li {float: left; padding: 0 0 0 15px;}
+.about_down li div {
+    position: relative; 
+    padding: 35px 30px 0; 
+    width: 310px; 
+    height: 260px; 
+    background: #fff; 
+    box-sizing: border-box;
+}
+.about_down li div h4 {font-size: 24px; color: #222; font-weight: normal; line-height: 36px;}
+.about_down li div p {padding: 22px 0 20px; font-size: 14px; color: #666;}
+.about_down li div span {font-size: 12px; color: #666;}
+.about_down li div em {position: absolute; background: #606060; transition: all 0.5s; opacity: 0;}
+.about_down li div em:nth-of-type(1) {left: 0; top: 0; width: 0%; height: 1px;}
+.about_down li div em:nth-of-type(2) {left: 0; top: 0; width: 1px; height: 0%;}
+.about_down li div em:nth-of-type(3) {right: 0; bottom: 0; width: 1px; height: 0%;}
+.about_down li div em:nth-of-type(4) {right: 0; bottom: 0; width: 0%; height: 1px;}
+
+.about_down li div:hover em {opacity: 1;}
+.about_down li div:hover em:nth-of-type(1) {width: 100%;}
+.about_down li div:hover em:nth-of-type(2) {height: 100%;}
+.about_down li div:hover em:nth-of-type(3) {height: 100%;}
+.about_down li div:hover em:nth-of-type(4) {width: 100%;}
 
 /* PORTFOLIO */
 #PORTFOLIO {width: 1175px; margin: 0 auto;}
