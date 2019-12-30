@@ -1,0 +1,468 @@
+/* 
+
+Template 2091 Ziggy
+
+http://www.tooplate.com/view/2091-ziggy
+
+*/
+h1, h2{font-weight: normal; font-size: 1.0em;}
+/*============
+nav 스크롤 아래 하단으로 내려오는 것 
+============*/
+
+#main_nav{
+    width: 100%;
+    height: 70px;
+    
+    position: fixed;/*픽시드와 앱솔루트는 겹침*//*제이쿼리*/
+    top:-80px; left:0;
+    
+    background: rgba(255,255,255,0.7);
+    box-shadow: 0px 2px 5px rgba(0,0,0,0.2);
+    
+    z-index: 50;
+}
+
+    #main_nav > ul{
+        overflow: hidden;
+        width:764px;
+        margin: 0 auto;
+    }
+        #main_nav > ul > li{
+            float: left;
+            margin-right: 60px;
+            line-height: 70px;
+        }
+        #main_nav > ul > li:last-child{
+            margin-right: 0;
+        }
+            #main_nav > ul > li > a{
+                font-weight: bold;
+                color: #000;
+                font-size: 22px;
+                display: block;
+                letter-spacing: -1px;
+            }
+            #main_nav > ul > li > a:hover,
+            #main_nav > ul > li > a:active{
+                color: #00a0c9;
+            }
+
+/*============
+토글
+============*/
+input[type="checkbox"]{
+    display: none;
+}
+
+/* PC ver.*/
+@media screen and (min-width: 1367px){
+    .toggle_nav{
+        display: none;
+    }}
+
+/* tabletpc & mobile ver. */
+@media screen and (max-width: 1366px){
+    input#toggle + .toggle_nav{
+        display: none;
+    }
+    input#toggle:checked + .toggle_nav{
+        display: block;
+    }
+    label.menu_open{
+        display: block;
+        background: url(../img/tm_header_menu.png) no-repeat;
+    }
+    
+    #main_nav{
+        display: none;
+    }
+
+
+
+
+}
+
+
+/*============
+BASIC STYLE
+============*/
+
+ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+}
+
+p {
+	font-size: 13px;
+	color: #7a7a7a;
+	line-height: 25px;
+    letter-spacing: 1px;
+}
+
+.primary-button a {
+	text-decoration: none;
+	padding: 10px 18px;
+	display: inline-block;
+	border-radius: 24px;
+	font-size: 11px;
+	text-transform: uppercase;
+	font-weight: 700;
+	letter-spacing: 1px;
+}
+.row > h1{
+    color: #415b90;
+    text-align: center;
+    margin-top: -30px;
+    padding-bottom: 60px;
+}
+/* ======================
+----- FIRST SECTION 차상미의 포토폴리오 부분------
+=======================*/
+
+.first-section {
+    height: 900px;
+	background-size: cover;
+	width: 100%;
+	background-repeat: no-repeat;
+	padding: 20% 0px 20% 0px;
+}
+
+/* mobile ver. */
+@media screen and (max-width: 767px){
+
+}
+
+/* mobile ver. */
+@media screen and (max-width: 767px){
+    .first-section {
+        height: 500px;
+    }
+        .first-section .text-content h2 {
+            font-size: 32px;
+        }
+        .first-section .text-content span {
+            font-size: 14px;
+        }
+        .first-section .text-content .line-dec {
+            margin: 15px 0px 15px auto;
+        }
+}
+
+
+/* ======================
+---- SECOND SECTION 스킬 부분 ------
+=======================*/
+
+.second-section {
+	padding: 100px 0px;
+}
+
+.second-section .service-item {
+	text-align: center;
+}
+
+.second-section .service-item .icon img {
+	max-width: 100%;
+	overflow: hidden;
+}
+@media screen and (min-width:992px){
+    .col-md-3:nth-of-type(1),
+    .col-md-3:nth-of-type(2),
+    .col-md-3:nth-of-type(3),
+    .col-md-3:nth-of-type(4){
+        margin-bottom: 15px;
+    }
+}
+.second-section h1{
+    font-size: 30px;
+    font-weight: bold;
+}
+.second-section h4 {
+	font-size: 16px;
+	color: #415b90;
+    text-align: center;
+    text-transform: uppercase;
+}
+.second-section p{
+    margin-bottom: 30px;
+}
+
+/* ======================
+----- THIRD SECTION 경력 사항 부분 ------
+=======================*/
+
+.third-section {
+	background-image: url(../img/third-section-bg.png);
+	background-size: cover;
+	width: 100%;
+	background-repeat: no-repeat;
+	padding: 20% 0px;
+}
+
+.third-section .left-image img {
+	width: 100%;
+	overflow: hidden;
+	text-align: center;
+}
+
+.third-section .right-text {
+	display: inline;
+}
+
+.third-section em {
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 300;
+    color: #fff;
+    line-height: 30px;
+}
+.third-section h4 {
+	margin-top: 60px;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+.third-section p{
+	color: #fff;
+}
+.third-section p:last-child{
+    color: #000;
+    font-size: 15px;
+    font-weight: 600;
+}
+.third-section p > em{
+    padding-left: 10px;
+	font-size: 12px;
+    line-height: 20px;
+}
+.third-section p:nth-of-type(2){
+    margin-bottom: 25px;
+}
+
+
+/* ======================
+---- FOURTH SECTION 포토폴리오 사진 부분 페이지 이동 -----
+=======================*/
+
+.fourth-section {
+	background-image: url(../img/fourth-section-bg.png);
+	background-size: cover;
+	width: 100%;
+	background-repeat: no-repeat;
+	padding: 16% 0px;
+}
+
+.fourth-section .col-md-3 {
+	padding-left: 0px;
+	padding-right: 0px;
+}
+.fourth-section .portfolio-item .image{
+    margin: auto;
+    width: 293px;
+    height: 250px;
+    background: #fff;
+    background-image: url(../img/bag_icon.png) no-repeat center center;
+    opacity: 0;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
+}
+.fourth-section .portfolio-item .image1{
+    transition-delay: 0s;
+}
+.fourth-section .portfolio-item .image2{
+    transition-delay: 0.3s;
+}
+.fourth-section .portfolio-item .image3{
+    transition-delay: 0.6s;
+}
+.fourth-section .portfolio-item .image4{
+    transition-delay: 0.9s;
+}
+
+.fourth-section .portfolio-item img {
+	width: 100%;
+	overflow: hidden;
+    transition: filter, transform, 0.5s;
+}
+
+.fourth-section .portfolio-item:hover img{
+    transform: scale(0.9);
+    background: rgba(225,225,225,0.3);
+}
+.fourth-section .first-item .text {
+	background-color: #d6d3d3;
+}
+
+.fourth-section .second-item .text {
+	background-color: #dedede;
+}
+
+.fourth-section .third-item .text {
+    background-color: #eaeaea;
+}
+
+.fourth-section .fourth-item .text {
+    background-color: #f4f4f4;
+}
+
+
+
+.fourth-section .portfolio-item .text {
+	padding: 20px 25px;
+}
+
+.fourth-section .portfolio-item .text span {
+	font-size: 13px;
+	color: #7a7a7a;
+}
+
+.fourth-section .portfolio-item .text h4 {
+	font-size: 17px;
+	color: #343434;
+	font-weight: 700;
+}
+
+
+
+/* ======================
+----- FIVTH SECTION------
+=======================*/
+
+.fivth-section {
+	background-image: url(../img/fivth-section-bg.png);
+	background-size: cover;
+	width: 100%;
+	background-repeat: no-repeat;
+	padding: 20% 0px;
+}
+
+.fivth-section .right-image {
+	display: inline;
+}
+
+.fivth-section .right-image img {
+	max-width: 100%;
+	overflow: hidden;
+	text-align: center;
+}
+
+.fivth-section .left-text {
+	display: inline;
+	text-align: right;
+}
+
+.fivth-section em {
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 300;
+}
+
+.fivth-section h4 {
+	margin-top: 60px;
+	color: #fff;
+	font-size: 24px;
+	font-weight: 700;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+}
+
+.fivth-section p {
+	color: #fff;
+	margin-top: 15px;
+}
+
+
+/* ======================
+----- SIXTH SECTION------
+=======================*/
+
+.sixth-section {
+	background-image: url(../img/sixth-section-bg.png);
+	background-size: cover;
+	width: 100%;
+	background-repeat: no-repeat;
+	padding: 10% 0px;
+   color: #000;
+}
+
+.sixth-section .right-info {
+	margin-left: 20px;
+}
+
+.sixth-section .right-info ul {
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+
+.sixth-section .right-info ul li {
+	display: block;
+	font-size: 13px;
+	font-weight: 700;
+	color: #415b90;
+	margin-bottom: 20px;
+}
+
+.sixth-section .right-info ul li a {
+	text-decoration: none;
+	color: #415b90;
+    font-size: 15px;
+}
+
+.sixth-section .right-info ul li i {
+	margin-right: 15px;
+	display: inline-block;
+	width: 46px;
+	height: 46px;
+	line-height: 46px;
+	text-align: center;
+	color: #415b90;
+	border-radius: 50%;
+	border: 1px solid #415b90;
+	font-size: 18px;
+}
+.col-md-6{
+    margin-bottom: 30px;
+}
+.col-md-6 > div{
+    
+    width: 85%;
+    border-bottom: 1px solid #415b90;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.col-md-6 > div > h1{
+    color: #415b90;
+    font-size: 25px;
+    padding-bottom: 10px;
+    font-weight: 600;
+}
+.col-md-6 > h2{
+    width: 75%;
+    color: #415b90;
+    font-size: 13px;
+    line-height: 25px;
+    margin-left: 20px;
+}
+
+/* 스크롤 탑 */
+
+.scrolltop{
+    width: 30px;
+    height: 30px;
+    position: fixed;
+    bottom:-30px; right:30px;
+    z-index: 60;
+    opacity: 0;
+}
+.scrolltop:hover{
+    transform: scale(1.1);
+}

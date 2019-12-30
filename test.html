@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>slide TEST</title>
+    <style>
+        @keyframes slider {
+            0%{right: -300%;}
+/*            50%{right: -200%;}*/
+            100%{right: -200%;}
+        }
+        #container {
+            position: relative;
+            width: 100%;
+            height: 800px;
+            overflow: hidden;
+        }
+        #container figure div {
+            width: 100%;
+            height: 800px;
+            float: left;
+            background: url('img/slide01.png') repeat-x center;
+        }
+        #container figure {
+            position: absolute;
+            width: 400%;
+            margin: 0;
+            padding: 0;
+/*            animation: 60s slider infinite;*/
+            animation-name: slider;
+            animation-duration: 60s;
+/*            animation-delay: 1s;*/
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+/*            animation-direction: normal;*/
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <figure>
+            <div></div>
+<!--
+            <img src="img/slide.png" alt="배경이미지">
+            <img src="img/slide.png" alt="배경이미지">
+            <img src="img/slide.png" alt="배경이미지">
+            <img src="img/slide.png" alt="배경이미지">
+-->
+        </figure>
+    </div>
+    <script src="js/jquery-1.2.6.js"></script>
+    <script>
+        
+    </script>
+</body>
+</html>
