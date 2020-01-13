@@ -1,0 +1,174 @@
+@charset "utf-8";
+
+/* 폰트 */
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans+KR:300,400,500,700,900&display=swap');
+
+/*reset*/
+body {
+    font-family: 'Noto Sans KR', sans-serif; 
+    font-size: 15px; 
+    color: #222; 
+    line-height: 1.6em; 
+    margin: 0; 
+    padding: 0;
+}
+a {text-decoration: none;}
+li {list-style: none;}
+
+/* 공용 */
+.clearfix:before, .clearfix:after {content: ""; display: block; clear: both;}
+.container {}
+section {padding-top: 50px;}
+section:nth-of-type(even) {background-color: #f4f4f4;}
+section .inner{ 
+    width: 1100px; 
+    margin: 0 auto; 
+    padding: 50px 0;
+    text-align: center;
+}
+section h2 {font-size: 36px; font-weight: normal;}
+.download_spec a {
+    display: block;
+    background-color: dodgerblue;
+    width: 170px;
+    color: #fff;
+    padding: 7px;
+    border-radius: 3px;
+    margin: 10px auto;
+}
+.download_spec span {
+    display: block;
+}
+.gototop {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+}
+.gototop .fa {
+    border: 1px solid lightgray;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 50px;
+    font-size: 26px; 
+    cursor: pointer;
+    background-color: #fff;
+    transition: all 0.5s;
+}
+.gototop .fa:hover {color: #fff; background-color: #000;}
+
+header {
+    background-color: crimson; 
+    height: 90px; 
+    line-height: 90px; 
+    position: fixed; 
+    width: 100%; 
+    left: 0; 
+    top: 0;
+}
+header nav {width: 1100px; margin: auto;}
+header nav .logo {float: left; padding-top: 20px;}
+header nav .logo img {height: 45px;}
+header nav .navi {float: right;}
+header nav .navi a {color: #fff; font-size: 16px; margin: 7px;}
+
+/* section: enjoy */
+.enjoy {padding: 80px 0;}
+.enjoy h1 {
+    font-size: 46px;
+    font-weight: normal;
+}
+.enjoy img {margin-top: 20px;}
+
+/* section: faster */
+.faster {}
+.faster .sub_inner {width: 800px; margin: 0 auto;}
+.faster .sub_inner > div {float: left; width: 400px; box-sizing: border-box; padding: 15px;}
+
+/* continue */
+.continue p {width: 800px; padding: 0 100px;}
+.continue img {margin-top: 50px;}
+
+/* create */
+.create p {width: 800px; padding: 0 100px;}
+.create img {margin-top: 50px;}
+
+/* download */
+.download {padding-top: 80px;}
+.download img {}
+.download .inner div {display: inline-block; height: 400px; vertical-align: middle;}
+
+/* footer */
+footer{}
+.links {background-color: #eee;}
+.links div {width: 1100px; margin: auto; padding: 20px 0;}
+.links div ul {
+    padding-left: 0; 
+    display: inline-block; 
+    width: 19.5%; 
+    vertical-align: top; 
+    font-size: 13px; 
+    text-transform: capitalize;
+}
+.links div ul li a {color: #333;}
+.links div ul li a:hover {color: #777;}
+.copyright {
+    background-color: #333; 
+    color: #999; 
+    text-align: center; 
+    height: 50px; 
+    font-size: 13px; 
+    line-height: 50px;
+}
+.trigger {
+    display: none;
+}
+
+/* mobil query */
+@media (max-width: 768px) {
+    section .inner {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+    section .inner img {
+        width: 100%;
+    }
+    section.faster .sub_inner {
+        width: 100%;
+    }
+    section.faster .sub_inner div {
+        float: none;
+        width: 100%;
+    }
+    section.continue p,
+    section.create p {
+        padding: 0;
+    }
+
+}
+
+
+/* 임포트는 css파일에 넣을때 사용하고, 링크 파일은 html에 넣을때 사용한다. 그 전에 커스터마이즈에서 폰트 두께 지원하는거 선택해주고 들어가도 좋다. */
+/* 폰트에서 sans-serif 안쓰면 익스플로어에서 동작하지 않고 굴림체로 나온다. 그래서 익스에서 쓸려면 반드시 어떤 폰트라도 sans-serif 넣어줘야 한다. */
+/* 모든 HTML 기본 폰트는 16픽셀이다. 즉, font-size: 16px = font-size: 1em; = font-size: 100%; 다 같은 말이다. 폰트 사이즈 안쓰면 기본 16픽셀로 나온다. */
+/* line-height는 보통, 일반적으로 1.6em 이 가장 무난하다. em 단위로 바꿔주면 좋다. 그래야 폰트 사이즈에 따라 자연스럽게 바뀐다. 만약 픽셀로 밖아 버리면 아디오스 된다.*/
+/* 레이아웃에 div 2개 이상이 나란히 있으면 반드시, 가로 정렬 하기 전에 해당 div들을 묶어주는 div를 만들어 줘야 나중에 작업이 용이하다. */
+/* 원하는 위치를 블럭선택 하고 ctrl + shift + / 누르면 해당 블럭 부분만 주석처리 가능하다. crtl + / 과는 또 다른 기능이다. */
+/* 컨테이너는 div이고, 블럭이다. 블럭은 기본적으로 너비값이 100% 이다. */
+/* margin: 0 auto 사용해서 가운데 정렬 하는것은 블럭구조만 가능하다. */
+/* h1은 픽셀 46정도 된다. */
+/* h2는 공통사항이 많으니까 section의 h2로 해서 따로 빼놓는다. */
+/* .faster .sub_inner 여기에 overflow: hidden을 줘야 quick, auto가 sub_inner 안에 들어온다. 그러나 이미 클리어픽스 해서 상관없다. 오버플로우 안써도 된다.  */
+/* inline-block 으로 div 두개를 맞췄을 때 버티컬 얼라인 미들 주면 가로 가운데 정렬 된다. */
+/* header 안에 인라인 요소는 header 높이 만큼 line-height 주면 세로 가운데 맞춤이 된다. */
+/* 이미지 크기를 줄이기 위해서는 img 에 직접 너비나 높이를 수정해야 한다. img를 포함한 div를 수정한다고 이미지 크기가 줄어들지는 않는다. */
+/* 헤더가 화면을 내려도 고정된 것처럼 보이게 하려면 position: fixed를 주면 된다. 근데 fixed, absolute 주면 공통적으로 너비값을 잃어 버린다. 따라서 이럴때는 width: 100% 를 줘야 한다. 그리고 fixed 하면 자동으로 위치가 top: 0, left: 0 에 맞춰진다. 위치를 바꾸고 싶으면 top, left 를 바꿔주면 된다. 원래 header는 기본이 width:100%이다. fixed 해서 너비를 잃어버리니까 다시 100% 넣어주는것일 뿐이다.*/
+/* 화면 하단에 top으로 바로가기 버튼은 폰트 어썸 사용해서 만든다. 작업 위치는 사실 공통요소에 가깝기 때문에 그곳에서 작업한다.*/
+/* absolute는 fixed와 비슷한데, 대신 마우스 스크롤 내려도 화면에 고정되지 않는다. */
+/* ul에는 자동으로 padding-left가 들어가 있다. 따라서 정확하게 라인에 따라 목록을 맞추고 싶다면 padding-left: 0 으로해줘야 한다. */
+/* 블럭요소 중앙은 margin:auto, 인라인 요소 중앙은 높이 만큼 line-height 사용한다. */
+
+/* 보통 max-width: 768px 넘어가면 타블렛이다. 휴대폰 최대가 768픽셀이다. */
+/* .navi a:before 에 가상요소 넣고, 거기에 폰트 어썸 아이콘을 넣는 방법은, 폰트어썸 사이트 가면 해당 아이콘의 유니코드가 상단에 나온다. 그걸 |(역슬레쉬)넣고 코드를 넣어준 다음에 font-fzmily: 'font-awesome' 이라고 해주면 된다. */

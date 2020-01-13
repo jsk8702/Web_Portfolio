@@ -1,0 +1,105 @@
+@charset "utf-8";
+
+/* Mobil CSS */
+@media (min-width: 1024px) {
+    
+}
+@media (max-width: 768px) {
+    /* header */
+    header {
+        height: 50px;
+        line-height: 35px;
+    }
+    header nav {
+        width: 100%;
+    }
+    .logo {padding-top: 15px;}
+    .logo img {
+        max-width: 80%;
+        height: auto;
+        margin-top: -15px;
+        margin-left: 10px;
+    }
+    .navi {
+        background-color: #000;
+        float: none;
+        position: absolute;
+        top: 50px;
+        width: 100%;
+        height: 0;
+        overflow: hidden;
+        transition: 0.3s;
+    }
+    .navi.active {
+        height: 220px;
+    }
+    .navi a {
+        display: block;
+        font-size: 14px;
+        border-bottom: 1px solid #444;
+    }
+    .navi a:before {
+        content: "\f105";
+        font-family: "FontAwesome";
+        margin-right: 10px;
+        margin-left: 10px;
+        color: #999;
+    }
+    .navi a:last-child {border-bottom: none;}
+    
+    /* section */
+    section .inner {
+        width: 100%;
+        padding: 20px;
+        box-sizing: border;
+    }
+    section .inner img {
+        max-width: 80%;
+        height: auto;
+    }
+    section.faster .inner .sub_inner {
+        width: 100%;
+    }
+    section.faster .inner .sub_inner div {
+        float: none;
+        width: 100%;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        
+    }
+    section.continue p,
+    section.create p {
+        padding: 0;
+    }
+    section.enjoy h1 {
+        font-size: 36px;
+        line-height: 1.2em;
+    }
+    section h2 {
+        font-size: 26px;
+        line-height: 1.2em;
+    }
+    footer .links {
+        display: none;
+    }
+    
+    /* trigger Button */
+    .trigger {
+        display: block;
+        position: absolute;
+        right: 10px;
+        top: 5px;
+        font-size: 22px;
+        color: #fff;
+    }
+}
+
+/* @media (min-width: 1024px) => pc버전은 최소한 1024px 까지는 보인다는 의미이다. pc버전 최소단계이다. 이거 보다 작은 pc모니터는 없기 때문이다. 따라서 그냥 style.css 파일에 작성한 파일은 여기에 속한다.*/
+/* @media (max-width: 768px) => 모바일 버전은 최대 768px까지만 적용된다는 의미이다. 그 이상은 타블렛이다. 일반적으로 모바일은 최대 768픽셀 까지만 만든다. */
+
+/* inner 안에 div 2개가 가로정렬일때는, float: left 인 경우와 display: inline-block인 경우가 있다. */
+/* float: left 인 경우에는 float: none 으로 해서 float 성질을 없애주고 width:100% 줘서 블럭 효과를 줘야 한다. */
+/* display: inline-block인 경우에는 display: block으로 바꿔주고, width:100% 주면 된다. */
+
+/* .navi a 의 텍스트 줄간격이 엄청 큰 것은 최상위 header에 이미 line-height 가 있어서 그렇다. 상속받아서 그렇다. 따라서 header의 line-height를 줄여준다. */
+/*  .navi a:before 가상요소에 폰트어썸 아이콘 사용하려면 폰트어섬 사이트에서 원하는 화살표 아이콘 검색해서 상단에 유니코드 옆에 f105 를 찾아서 역슬레쉬 붙이고 가상요소에 넣어준다. content: "\f105" => 그 다음에 폰트패밀리는 fontawesome 이라고 써주면 나온다.*/

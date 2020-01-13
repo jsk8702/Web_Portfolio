@@ -14,6 +14,7 @@ header {padding: 0 30px 30px; background: #f2f2f2;}
     height: 800px;
     float: left;
     background: url('../img/slide01.png') repeat-x center;
+    background-size: contain;
 }
 .slide figure {
     position: absolute;
