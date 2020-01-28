@@ -1,0 +1,21 @@
+@charset "UTF-8";
+
+/* 공용 */
+body, h1, h2, p, div, ul, li, a, span, strong, em {margin: 0; padding: 0;}
+a {text-decoration: none;}
+li {list-style: none;}
+.clearfix:before, .clearfix:after {content: ""; display: block; clear: both;}
+
+/* header */
+header {background-color: #dc143c;}
+.header {width: 1100px; margin: 0 auto;}
+.header .logo {float: left;}
+.header .logo img {}
+.header nav {float: right;}
+.header nav ul {}
+.header nav ul li {float: left; padding-right: 1.5em;}
+.header nav ul li:last-of-type {padding-right: 0;}
+.header nav ul li a {}
+
+
+/* 미디어쿼리 */
