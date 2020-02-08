@@ -52,7 +52,7 @@ header #lnb nav > ul > li > a {
     width: 160px; 
     height: 69px; 
     font-size: 20px; 
-    color: #fff; 
+    color: rgba(0, 0, 0, 0.3); 
     line-height: 69px;
     transition: all 0.5s;
 }
